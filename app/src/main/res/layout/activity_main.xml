@@ -14,14 +14,15 @@
     <view
         android:id="@+id/mapView"
         class="com.android.mdp_11.GridMap"
-        android:layout_width="500dp"
-        android:layout_height="666dp"
+        android:layout_width="450dp"
+        android:layout_height="600dp"
+        android:layout_marginStart="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.301" />
+        app:layout_constraintVertical_bias="0.25" />
     <!--  wrap_content  -->
     <TextView
         android:id="@+id/exploreTextView"
@@ -133,7 +134,7 @@
         android:id="@+id/robotStatusTitleTextView"
         android:layout_width="140dp"
         android:layout_height="17dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="15dp"
@@ -153,64 +154,20 @@
     <TextView
         android:id="@+id/robotStatusTextView"
         android:layout_width="286dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="68dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="75dp"
+        android:padding="8dp"
         android:background="@drawable/border"
         android:scrollbars="vertical"
         android:text="Pending status..."
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
-        android:textSize="15sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.0" />
-    <!--  55 x 55  -->
-    <ImageButton
-        android:id="@+id/moveForwardImageBtn"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mapView"
-        app:layout_constraintTop_toBottomOf="@+id/robotStatusTextView"
-        app:srcCompat="@drawable/ic_arrow_move_forward" />
-    <!--  55 x 55  -->
-    <ImageButton
-        android:id="@+id/moveBackwardImageBtn"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mapView"
-        app:layout_constraintTop_toBottomOf="@+id/turnLeftImageBtn"
-        app:srcCompat="@drawable/ic_arrow_move_backward" />
-    <!--  55 x 55  -->
-    <ImageButton
-        android:id="@+id/turnLeftImageBtn"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="15dp"
-        android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/mapView"
-        app:layout_constraintTop_toBottomOf="@+id/moveForwardImageBtn"
-        app:srcCompat="@drawable/ic_arrow_move_left" />
-    <!--  55 x 55  -->
-    <ImageButton
-        android:id="@+id/turnRightImageBtn"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="15dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/moveForwardImageBtn"
-        app:srcCompat="@drawable/ic_arrow_move_right" />
     <!--  wrap_content  -->
     <Switch
         android:id="@+id/phoneTiltSwitch"
@@ -227,34 +184,44 @@
         app:layout_constraintStart_toEndOf="@+id/mapView"
         app:layout_constraintTop_toTopOf="@+id/turnRightImageBtn" />
     <!--  wrap_content  -->
+    <!--  210 x wrap_content  -->
     <Button
         android:id="@+id/resetMapBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="30dp"
+        android:background="@color/colorAccent"
+        android:padding="10px"
         android:text="@string/reset_map_button"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
         android:textSize="18sp"
-        android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/setStartPointToggleBtn"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mapView" />
-    <!--  210 x wrap_content  -->
+
+    <!--  150 x wrap_content  -->
+
     <ToggleButton
         android:id="@+id/setStartPointToggleBtn"
-        android:layout_width="210dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:background="@color/colorAccent"
+        android:padding="10px"
         android:textAlignment="center"
+        android:textColor="@color/colorWhite"
         android:textOff="@string/set_start_point_button"
         android:textOn="CANCEL"
         android:textSize="18sp"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mapView" />
-    <!--  150 x wrap_content  -->
+
     <ToggleButton
         android:id="@+id/setWaypointToggleBtn"
         android:layout_width="150dp"
@@ -355,8 +322,8 @@
         android:layout_height="67dp"
         android:scaleType="fitCenter"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="8dp"
         android:background="@null"
         app:layout_constraintBottom_toTopOf="@+id/exploredImageBtn"
@@ -371,8 +338,8 @@
         android:id="@+id/exploredImageBtn"
         android:layout_width="57dp"
         android:layout_height="67dp"
-        android:layout_marginStart="524dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginStart="504dp"
+        android:layout_marginTop="192dp"
         android:layout_marginEnd="8dp"
         android:background="@null"
         android:scaleType="fitCenter"
@@ -388,8 +355,8 @@
         android:layout_height="67dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="0dp"
         android:background="@null"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/clearImageBtn"
@@ -405,13 +372,13 @@
         android:layout_width="57dp"
         android:layout_height="67dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="56dp"
         android:background="@null"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/f1Btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.977"
+        app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/icon_remove" />
 
@@ -494,7 +461,7 @@
         android:id="@+id/f1Btn"
         android:layout_width="74dp"
         android:layout_height="56dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="372dp"
         android:background="@color/colorAccent"
         android:contentDescription="F1 value"
@@ -510,8 +477,8 @@
         android:id="@+id/f2Btn"
         android:layout_width="74dp"
         android:layout_height="56dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="292dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="295dp"
         android:background="@color/colorAccent"
         android:contentDescription="F2 value"
         android:text="F2"
@@ -526,8 +493,8 @@
         android:id="@+id/reconfigureBtn"
         android:layout_width="74dp"
         android:layout_height="56dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="208dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="214dp"
         android:background="@color/colorAccent"
         android:text="Recon"
         android:textAlignment="center"
@@ -536,5 +503,46 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
+    <!--  55 x 55  -->
+    <ImageButton
+        android:id="@+id/moveForwardImageBtn"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mapView"
+        app:layout_constraintTop_toBottomOf="@+id/reconfigureBtn"
+        app:srcCompat="@drawable/ic_arrow_move_forward" />
+    <!--  55 x 55  -->
+    <ImageButton
+        android:id="@+id/moveBackwardImageBtn"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mapView"
+        app:layout_constraintTop_toBottomOf="@+id/turnLeftImageBtn"
+        app:srcCompat="@drawable/ic_arrow_move_backward" />
+    <!--  55 x 55  -->
+    <ImageButton
+        android:id="@+id/turnLeftImageBtn"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintStart_toEndOf="@+id/mapView"
+        app:layout_constraintTop_toBottomOf="@+id/moveForwardImageBtn"
+        app:srcCompat="@drawable/ic_arrow_move_left" />
+    <!--  55 x 55  -->
+    <ImageButton
+        android:id="@+id/turnRightImageBtn"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/moveForwardImageBtn"
+        app:srcCompat="@drawable/ic_arrow_move_right" />
 </android.support.constraint.ConstraintLayout>
