@@ -107,7 +107,7 @@ public class GridMap extends View {
         int[] curCoord = this.getCurCoord();
 
         if (!this.getMapDrawn()) {
-            canvas.drawColor(Color.parseColor("#D4AF37"));
+            canvas.drawColor(Color.parseColor("#FFFFFF"));
             String[] dummyArrowCoord = new String[3];
             dummyArrowCoord[0] = "1";
             dummyArrowCoord[1] = "1";
