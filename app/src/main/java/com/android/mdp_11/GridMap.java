@@ -84,7 +84,7 @@ public class GridMap extends View {
         startColor.setColor(Color.YELLOW);
         waypointColor.setColor(Color.YELLOW);
         unexploredColor.setColor(Color.GRAY);
-        exploredColor.setColor(Color.WHITE);
+        exploredColor.setColor(Color.LTGRAY);
         arrowColor.setColor(Color.BLACK);
         fastestPathColor.setColor(Color.MAGENTA);
     }

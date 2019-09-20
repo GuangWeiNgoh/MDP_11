@@ -178,7 +178,7 @@
         android:layout_marginEnd="8dp"
         android:splitTrack="false"
         android:text="TILT OFF"
-        android:visibility="gone"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.99"
         app:layout_constraintStart_toEndOf="@+id/mapView"
@@ -222,21 +222,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mapView" />
 
+    <!--  30 x 40  -->
+
     <ToggleButton
         android:id="@+id/setWaypointToggleBtn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorAccent"
         android:textAlignment="center"
+        android:textColor="@color/colorWhite"
         android:textOff="@string/set_waypoint_button"
         android:textOn="CANCEL"
         android:textSize="18sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/setStartPointToggleBtn"
-        app:layout_constraintTop_toBottomOf="@+id/mapView" />
-    <!--  30 x 40  -->
+        app:layout_constraintEnd_toStartOf="@+id/turnLeftImageBtn"
+        app:layout_constraintHorizontal_bias="0.127"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setStartPointToggleBtn" />
+
     <TextView
         android:id="@+id/xLabelTextView"
         android:layout_width="30dp"

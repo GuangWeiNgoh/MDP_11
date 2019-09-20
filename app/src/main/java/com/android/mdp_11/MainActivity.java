@@ -902,22 +902,22 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 showLog("Sensor Move Forward Detected");
                 gridMap.moveRobot("forward");
                 refreshLabel();
-                printMessage("AW|");
+                printMessage("Forward~");
             } else if (y > 2) {
                 showLog("Sensor Move Backward Detected");
                 gridMap.moveRobot("back");
                 refreshLabel();
-                printMessage("AS|");
+                printMessage("Back~");
             } else if (x > 2) {
                 showLog("Sensor Move Left Detected");
                 gridMap.moveRobot("left");
                 refreshLabel();
-                printMessage("AA|");
+                printMessage("RotLeft~");
             } else if (x < -2) {
                 showLog("Sensor Move Right Detected");
                 gridMap.moveRobot("right");
                 refreshLabel();
-                printMessage("AD|");
+                printMessage("RotRight~");
             }
         }
         sensorFlag = false;
