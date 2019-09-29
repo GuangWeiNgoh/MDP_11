@@ -284,7 +284,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         updateStatus("moving forward");
                     else
                         updateStatus("Unable to move forward");
-                    printMessage("Forward~");
+                    printMessage("u");
                 }
                 else
                     updateStatus("Please press 'STARTING POINT'");
@@ -322,7 +322,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         updateStatus("moving backward");
                     else
                         updateStatus("Unable to move backward");
-                    printMessage("Back~");
+                    //printMessage("Back~");
+                    printMessage("RotLeft~");
+                    printMessage("RotLeft~");
                 }
                 else
                     updateStatus("Please press 'STARTING POINT'");
@@ -902,12 +904,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 showLog("Sensor Move Forward Detected");
                 gridMap.moveRobot("forward");
                 refreshLabel();
-                printMessage("Forward~");
+                printMessage("u");
             } else if (y > 2) {
                 showLog("Sensor Move Backward Detected");
                 gridMap.moveRobot("back");
                 refreshLabel();
-                printMessage("Back~");
+                //printMessage("Back~");
+                printMessage("RotLeft~");
+                printMessage("RotLeft~");
             } else if (x > 2) {
                 showLog("Sensor Move Left Detected");
                 gridMap.moveRobot("left");

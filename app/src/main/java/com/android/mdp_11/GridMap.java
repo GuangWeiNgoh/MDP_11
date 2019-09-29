@@ -217,13 +217,57 @@ public class GridMap extends View {
     }
 
     public void setStartCoord(int col, int row) {
-        showLog("Entering setStartCoord");
-        startCoord[0] = col;
-        startCoord[1] = row;
+//        showLog("Entering setStartCoord");
+//        startCoord[0] = col;
+//        startCoord[1] = row;
+//
+//        if (this.getStartCoordStatus())
+//            this.setCurCoord(col, row, "up");
+//        showLog("Exiting setStartCoord");
+        if((row>1 && row<20) && (col>1 && col<15)){
+            startCoord[0] = col;
+            startCoord[1] = row;
 
-        if (this.getStartCoordStatus())
-            this.setCurCoord(col, row, "up");
-        showLog("Exiting setStartCoord");
+            if (this.getStartCoordStatus())
+                this.setCurCoord(col, row, "up");
+            showLog("Exiting setStartCoord");
+        } else if ((row<=1) && (col>1 && col<15)){
+            startCoord[0] = col;
+            startCoord[1] = 2;
+
+            if (this.getStartCoordStatus())
+                this.setCurCoord(col, 2, "up");
+            showLog("Exiting setStartCoord");
+        } else if ((row>=20) && (col>1 && col<15)){
+            startCoord[0] = col;
+            startCoord[1] = 19;
+
+            if (this.getStartCoordStatus())
+                this.setCurCoord(col, 19, "up");
+            showLog("Exiting setStartCoord");
+        } else if ((row>1 && row<20) && (col<=1)){
+            startCoord[0] = 2;
+            startCoord[1] = row;
+
+            if (this.getStartCoordStatus())
+                this.setCurCoord(2, row, "up");
+            showLog("Exiting setStartCoord");
+        } else if ((row>1 && row<20) && (col>=15)){
+            startCoord[0] = 14;
+            startCoord[1] = row;
+
+            if (this.getStartCoordStatus())
+                this.setCurCoord(14, row, "up");
+            showLog("Exiting setStartCoord");
+        } else {
+            startCoord[0] = 2;
+            startCoord[1] = 2;
+
+            if (this.getStartCoordStatus())
+                this.setCurCoord(2, 2, "up");
+            showLog("Exiting setStartCoord");
+        }
+
     }
 
     private int[] getStartCoord() {
@@ -322,10 +366,11 @@ public class GridMap extends View {
                         robotDirection = "right";
                         break;
                     case "back":
-                        if (curCoord[1] != 2) {
-                            curCoord[1] -= 1;
-                            validPosition = true;
-                        }
+//                        if (curCoord[1] != 2) {
+//                            curCoord[1] -= 1;
+//                            validPosition = true;
+//                        }
+                        robotDirection = "down";
                         break;
                     case "left":
                         robotDirection = "left";
@@ -347,10 +392,11 @@ public class GridMap extends View {
                         robotDirection = "down";
                         break;
                     case "back":
-                        if (curCoord[0] != 2) {
-                            curCoord[0] -= 1;
-                            validPosition = true;
-                        }
+//                        if (curCoord[0] != 2) {
+//                            curCoord[0] -= 1;
+//                            validPosition = true;
+//                        }
+                        robotDirection = "left";
                         break;
                     case "left":
                         robotDirection = "up";
@@ -371,10 +417,11 @@ public class GridMap extends View {
                         robotDirection = "left";
                         break;
                     case "back":
-                        if (curCoord[1] != 19) {
-                            curCoord[1] += 1;
-                            validPosition = true;
-                        }
+//                        if (curCoord[1] != 19) {
+//                            curCoord[1] += 1;
+//                            validPosition = true;
+//                        }
+                        robotDirection = "up";
                         break;
                     case "left":
                         robotDirection = "right";
@@ -395,10 +442,11 @@ public class GridMap extends View {
                         robotDirection = "up";
                         break;
                     case "back":
-                        if (curCoord[0] != 14) {
-                            curCoord[0] += 1;
-                            validPosition = true;
-                        }
+//                        if (curCoord[0] != 14) {
+//                            curCoord[0] += 1;
+//                            validPosition = true;
+//                        }
+                        robotDirection = "right";
                         break;
                     case "left":
                         robotDirection = "down";
@@ -431,7 +479,7 @@ public class GridMap extends View {
         if (getValidPosition())
             this.setCurCoord(curCoord[0], curCoord[1], robotDirection);
         else {
-            if (direction.equals("forward") || direction.equals("back"))
+            if (direction.equals("forward") /*|| direction.equals("back")*/)
                 robotDirection = backupDirection;
             this.setCurCoord(oldCoord[0], oldCoord[1], robotDirection);
         }
