@@ -41,6 +41,8 @@ import org.json.JSONObject;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     private static final String TAG = "MainActivity";
@@ -61,10 +63,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     TextView exploreTimeTextView, fastestTimeTextView;
     ToggleButton exploreToggleBtn, fastestToggleBtn;
     ImageButton exploreResetImageBtn, fastestResetImageBtn;
+    ImageButton calibrationBtn;
     TextView robotStatusTextView;
     ImageButton moveForwardImageBtn, turnRightImageBtn, moveBackwardImageBtn, turnLeftImageBtn;
     Switch phoneTiltSwitch;
-    Button resetMapBtn;
+    Button resetMapBtn, left45Btn, right45Btn;
     ToggleButton setStartPointToggleBtn, setWaypointToggleBtn;
     TextView xAxisTextView, yAxisTextView, directionAxisTextView;
     ImageButton directionChangeImageBtn, exploredImageBtn, obstacleImageBtn, clearImageBtn;
@@ -148,12 +151,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         turnRightImageBtn = findViewById(R.id.turnRightImageBtn);
         moveBackwardImageBtn = findViewById(R.id.moveBackwardImageBtn);
         turnLeftImageBtn = findViewById(R.id.turnLeftImageBtn);
+        left45Btn = findViewById(R.id.left45Btn);
+        right45Btn = findViewById(R.id.right45Btn);
         phoneTiltSwitch = findViewById(R.id.phoneTiltSwitch);
         resetMapBtn = findViewById(R.id.resetMapBtn);
         setStartPointToggleBtn = findViewById(R.id.setStartPointToggleBtn);
         setWaypointToggleBtn = findViewById(R.id.setWaypointToggleBtn);
         xAxisTextView = findViewById(R.id.xAxisTextView);
         yAxisTextView = findViewById(R.id.yAxisTextView);
+        calibrationBtn = findViewById(R.id.calibrationBtn);
         directionAxisTextView = findViewById(R.id.directionAxisTextView);
         directionChangeImageBtn = findViewById(R.id.directionChangeImageBtn);
         exploredImageBtn = findViewById(R.id.exploredImageBtn);
@@ -213,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 }
                 else if (exploreToggleBtn.getText().equals("STOP")) {
                     showToast("Exploration timer start!");
-                    printMessage("XE");
+                    printMessage("AL:x");
                     exploreTimer = System.currentTimeMillis();
                     timerHandler.postDelayed(timerRunnableExplore, 0);
                 }
@@ -237,6 +243,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
+
+
         fastestToggleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -248,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 }
                 else if (fastestToggleBtn.getText().equals("STOP")) {
                     showToast("Fastest timer start!");
-                    printMessage("XF");
+                    printMessage("AL:f");
                     fastestTimer = System.currentTimeMillis();
                     timerHandler.postDelayed(timerRunnableFastest, 0);
                 }
@@ -284,7 +292,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         updateStatus("moving forward");
                     else
                         updateStatus("Unable to move forward");
-                    printMessage("u");
+                    printMessage("AR:1");
                 }
                 else
                     updateStatus("Please press 'STARTING POINT'");
@@ -301,7 +309,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 else if (gridMap.getCanDrawRobot() && !gridMap.getAutoUpdate()) {
                     gridMap.moveRobot("right");
                     refreshLabel();
-                    printMessage("RotRight~");
+                    printMessage("AR:d");
+                    //printMessage("StRight~");
                 }
                 else
                     updateStatus("Please press 'STARTING POINT'");
@@ -323,8 +332,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     else
                         updateStatus("Unable to move backward");
                     //printMessage("Back~");
-                    printMessage("RotLeft~");
-                    printMessage("RotLeft~");
+                    printMessage("AR:d");
+                    printMessage("AR:d");
                 }
                 else
                     updateStatus("Please press 'STARTING POINT'");
@@ -342,11 +351,47 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     gridMap.moveRobot("left");
                     refreshLabel();
                     updateStatus("turning left");
-                    printMessage("RotLeft~");
+                    printMessage("AR:a");
                 }
                 else
                     updateStatus("Please press 'STARTING POINT'");
                 showLog("Exiting turnLeftImageBtn");
+            }
+        });
+
+        left45Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showLog("Clicked left45Btn");
+                if (gridMap.getAutoUpdate())
+                    updateStatus("Please press 'MANUAL'");
+                else if (gridMap.getCanDrawRobot() && !gridMap.getAutoUpdate()) {
+                    gridMap.moveRobot("left45");
+                    refreshLabel();
+                    updateStatus("turning left 45");
+                    printMessage("AR:q");
+                }
+                else
+                    updateStatus("Please press 'STARTING POINT'");
+                showLog("Exiting left45Btn");
+            }
+        });
+
+        right45Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showLog("Clicked right45Btn");
+                if (gridMap.getAutoUpdate())
+                    updateStatus("Please press 'MANUAL'");
+                else if (gridMap.getCanDrawRobot() && !gridMap.getAutoUpdate()) {
+                    gridMap.moveRobot("right45");
+                    refreshLabel();
+                    updateStatus("turning right 45");
+                    printMessage("AR:e");
+                }
+                else
+                    updateStatus("Please press 'STARTING POINT'");
+                showLog("Exiting right45Btn");
             }
         });
 
@@ -412,6 +457,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
+
+
         setWaypointToggleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -452,6 +499,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 showLog("Exiting exploredImageBtn");
             }
         });
+
+        calibrationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showLog("Clicked calibrationBtn");
+                printMessage("AR:c");
+                showToast("Calibrating...");
+                showLog("Exiting calibrationBtn");
+            }
+        });
+
+
 
         obstacleImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -602,14 +661,22 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         JSONObject jsonObject = new JSONObject();
         String message;
-
+        x = x-1;
+        y = y-1;
         switch(name) {
             case "starting":
+                jsonObject.put(name, name);
+                jsonObject.put("x", x);
+                jsonObject.put("y", y);
+                //message = name + " (" + x + "," + y + ")";
+                message = "AL:st:" + x + "," + y;
+                break;
             case "waypoint":
                 jsonObject.put(name, name);
                 jsonObject.put("x", x);
                 jsonObject.put("y", y);
-                message = name + " (" + x + "," + y + ")";
+                //message = name + " (" + x + "," + y + ")";
+                message = "AL:wp:" + x + "," + y;
                 break;
             default:
                 message = "Unexpected default for printMessage: " + name;
@@ -617,7 +684,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
         editor.putString("sentText", messageSentTextView.getText() + "\n " + message);
         editor.commit();
-        printMessage("X" + String.valueOf(jsonObject));
+        //printMessage("X" + String.valueOf(jsonObject));
         if (BluetoothConnectionService.BluetoothConnectionStatus == true) {
             byte[] bytes = message.getBytes(Charset.defaultCharset());
             BluetoothConnectionService.write(bytes);
@@ -768,8 +835,38 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     BroadcastReceiver messageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String message = intent.getStringExtra("receivedMessage");
+            String premessage = intent.getStringExtra("receivedMessage");
+            String message;
+            if (premessage.substring(0,3).equals("RPi")){
+                Pattern pattern1 = Pattern.compile(":(.*?),");
+                Matcher matcher1 = pattern1.matcher(premessage);
+                Pattern pattern2 = Pattern.compile(",(.*?),");
+                Matcher matcher2 = pattern2.matcher(premessage);
+                Pattern pattern3 = Pattern.compile(",\\S,(.*?)$");
+                Matcher matcher3 = pattern3.matcher(premessage);
+                if (matcher1.find() && matcher2.find() && matcher3.find())
+                {
+                    message = "{\"image\":[{\"id\":\"" + matcher1.group(1) + "\",\"x\":" + matcher2.group(1) + ",\"y\":" + matcher3.group(1) + "}]}";
+                } else {
+                    message = premessage;
+                }
+
+
+            }
+
+            else if (premessage.length() == 76){
+                message = "{\"map\":[{\"explored\":" + premessage + "\",\"length\":0,\"obstacle\":\"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111111111111\"}]}";
+            }
+
+
+
+            else {
+                message = premessage;
+            }
+
+            //String message = premessage + matcher1.group(1);
             showLog("receivedMessage: message --- " + message);
+
             try {
                 if (message.length() > 7 && message.substring(2,6).equals("grid")) {
                     String resultString = "";
@@ -904,24 +1001,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 showLog("Sensor Move Forward Detected");
                 gridMap.moveRobot("forward");
                 refreshLabel();
-                printMessage("u");
+                printMessage("AR:1");
             } else if (y > 2) {
                 showLog("Sensor Move Backward Detected");
                 gridMap.moveRobot("back");
                 refreshLabel();
                 //printMessage("Back~");
-                printMessage("RotLeft~");
-                printMessage("RotLeft~");
+                printMessage("AR:d");
+                printMessage("AR:d");
             } else if (x > 2) {
                 showLog("Sensor Move Left Detected");
                 gridMap.moveRobot("left");
                 refreshLabel();
-                printMessage("RotLeft~");
+                printMessage("AR:a");
             } else if (x < -2) {
                 showLog("Sensor Move Right Detected");
                 gridMap.moveRobot("right");
                 refreshLabel();
-                printMessage("RotRight~");
+                printMessage("AR:d");
+                //printMessage("StRight~");
             }
         }
         sensorFlag = false;
