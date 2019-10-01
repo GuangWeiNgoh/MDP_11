@@ -1,29 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
     tools:context="com.android.mdp_11.MainActivity">
+<!--    tools:context="com.android.mdp_11.MainActivity">-->
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
     <!--  390 x 520  -->
+    <!--  wrap_content  -->
+
     <view
         android:id="@+id/mapView"
         class="com.android.mdp_11.GridMap"
         android:layout_width="450dp"
         android:layout_height="600dp"
         android:layout_marginStart="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.25" />
-    <!--  wrap_content  -->
+        android:layout_x="26dp"
+        android:layout_y="136dp" />
+
+    <Button
+        android:id="@+id/f2Btn"
+        android:layout_width="74dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="295dp"
+        android:layout_x="494dp"
+        android:layout_y="204dp"
+        android:background="@color/colorAccent"
+        android:contentDescription="F2 value"
+        android:text="F2"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/reconfigureBtn"
+        android:layout_width="74dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="214dp"
+        android:layout_x="496dp"
+        android:layout_y="272dp"
+        android:background="@color/colorAccent"
+        android:text="Recon"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ToggleButton
+        android:id="@+id/exploreToggleBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="57dp"
+        android:layout_x="487dp"
+        android:layout_y="349dp"
+        android:gravity="center_vertical"
+
+        android:textAlignment="center"
+        android:textOff="@string/explore_button"
+        android:textOn="STOP"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/exploreTimeTextView"
+        android:layout_width="77dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="118dp"
+        android:layout_x="493dp"
+        android:layout_y="397dp"
+        android:text="@string/default_time"
+        android:textSize="10sp" />
+
+    <ToggleButton
+        android:id="@+id/fastestToggleBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="9dp"
+        android:layout_x="490dp"
+        android:layout_y="456dp"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:textOff="@string/fastest_button"
+        android:textOn="STOP"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/fastestTimeTextView"
+        android:layout_width="73dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="59dp"
+        android:layout_x="493dp"
+        android:layout_y="509dp"
+        android:text="@string/default_time"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/f1Btn"
+        android:layout_width="74dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="372dp"
+        android:layout_x="496dp"
+        android:layout_y="136dp"
+        android:background="@color/colorAccent"
+        android:contentDescription="F1 value"
+        android:text="F1"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/exploreTextView"
         android:layout_width="wrap_content"
@@ -33,47 +127,10 @@
         android:layout_marginEnd="8dp"
         android:text="@string/explore_time"
         android:textSize="20sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
-        app:layout_constraintStart_toEndOf="@+id/mapView"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"
-        tools:ignore="MissingConstraints" />
+        android:visibility="gone"/>
     <!--  wrap_content  -->
     <!--  120 x 45  -->
     <!--  45 x 45  -->
-
-    <TextView
-        android:id="@+id/exploreTimeTextView"
-        android:layout_width="77dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="118dp"
-        android:text="@string/default_time"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/turnLeftImageBtn"
-        app:layout_constraintHorizontal_bias="0.826"
-        app:layout_constraintStart_toEndOf="@+id/fastestTimeTextView"
-        app:layout_constraintTop_toBottomOf="@+id/mapView"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ToggleButton
-        android:id="@+id/exploreToggleBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="57dp"
-        android:gravity="center_vertical"
-        android:textAlignment="center"
-        android:textOff="@string/explore_button"
-
-        android:textOn="STOP"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/turnLeftImageBtn"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toEndOf="@+id/fastestToggleBtn"
-        app:layout_constraintTop_toBottomOf="@+id/mapView"
-        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/exploreResetImageBtn"
@@ -81,9 +138,6 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/exploreToggleBtn"
-        app:layout_constraintTop_toBottomOf="@+id/exploreTimeTextView"
         app:srcCompat="@drawable/ic_refresh" />
     <!--  wrap_content  -->
 
@@ -95,11 +149,6 @@
         android:layout_marginTop="21dp"
         android:layout_marginEnd="148dp"
         android:layout_marginBottom="52dp"
-        app:layout_constraintBottom_toTopOf="@+id/exploreTimeTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/setStartPointToggleBtn"
-        app:layout_constraintTop_toBottomOf="@+id/mapView"
         app:srcCompat="@drawable/ic_refresh" />
 
     <TextView
@@ -111,43 +160,10 @@
         android:layout_marginEnd="8dp"
         android:text="@string/fastest_time"
         android:textSize="20sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mapView"
-        app:layout_constraintTop_toBottomOf="@+id/exploreToggleBtn" />
+        android:visibility="gone" />
     <!--  wrap_content  -->
     <!--  120 x 45  -->
     <!--  45 x 45  -->
-
-    <TextView
-        android:id="@+id/fastestTimeTextView"
-        android:layout_width="48dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="59dp"
-        android:text="@string/default_time"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/moveBackwardImageBtn"
-        app:layout_constraintHorizontal_bias="0.292"
-        app:layout_constraintStart_toEndOf="@+id/manualAutoToggleBtn"
-        app:layout_constraintTop_toBottomOf="@+id/fastestToggleBtn"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ToggleButton
-        android:id="@+id/fastestToggleBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="49dp"
-        android:layout_marginTop="9dp"
-        android:gravity="center_vertical"
-        android:textAlignment="center"
-        android:textOff="@string/fastest_button"
-        android:textOn="STOP"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/turnLeftImageBtn"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/setWaypointToggleBtn"
-        app:layout_constraintTop_toBottomOf="@+id/setStartPointToggleBtn" />
 
     <ImageButton
         android:id="@+id/fastestResetImageBtn"
@@ -155,11 +171,28 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fastestToggleBtn"
-        app:layout_constraintTop_toBottomOf="@+id/fastestTimeTextView"
         app:srcCompat="@drawable/ic_refresh" />
     <!--  140 x 25  -->
+    <!--  140 x 50  -->
+
+    <!--  wrap_content  -->
+
+    <TextView
+        android:id="@+id/robotStatusTextView"
+        android:layout_width="286dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="75dp"
+        android:layout_x="122dp"
+        android:layout_y="74dp"
+        android:background="@drawable/border"
+        android:padding="8dp"
+        android:scrollbars="vertical"
+        android:text="Pending status..."
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp" />
+
     <TextView
         android:id="@+id/robotStatusTitleTextView"
         android:layout_width="140dp"
@@ -168,37 +201,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="15dp"
+        android:layout_x="-7dp"
+        android:layout_y="86dp"
         android:text="@string/robot_status_title"
         android:textAlignment="center"
         android:textColor="@color/colorBlack"
         android:textSize="10dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/mapView"
-        app:layout_constraintEnd_toStartOf="@+id/robotStatusTextView"
-        app:layout_constraintHorizontal_bias="0.425"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-    <!--  140 x 50  -->
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/robotStatusTextView"
-        android:layout_width="286dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="75dp"
-        android:background="@drawable/border"
-        android:padding="8dp"
-        android:scrollbars="vertical"
-        android:text="Pending status..."
-        android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.0" />
-    <!--  wrap_content  -->
     <Switch
         android:id="@+id/phoneTiltSwitch"
         android:layout_width="wrap_content"
@@ -207,12 +217,7 @@
         android:layout_marginTop="106dp"
         android:layout_marginEnd="8dp"
         android:splitTrack="false"
-        android:text="TILT OFF"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.99"
-        app:layout_constraintStart_toEndOf="@+id/mapView"
-        app:layout_constraintTop_toTopOf="@+id/turnRightImageBtn" />
+        android:text="TILT OFF"/>
     <!--  wrap_content  -->
     <!--  210 x wrap_content  -->
 
@@ -229,11 +234,7 @@
         android:text="@string/reset_map_button"
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/setStartPointToggleBtn"
-        app:layout_constraintHorizontal_bias="0.258"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mapView" />
+        android:textSize="10sp"/>
 
     <!--  30 x 40  -->
 
@@ -249,11 +250,7 @@
         android:textColor="@color/colorWhite"
         android:textOff="@string/set_start_point_button"
         android:textOn="CANCEL"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.264"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mapView" />
+        android:textSize="10sp"/>
 
     <ToggleButton
         android:id="@+id/setWaypointToggleBtn"
@@ -265,11 +262,7 @@
         android:textColor="@color/colorWhite"
         android:textOff="@string/set_waypoint_button"
         android:textOn="CANCEL"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/turnLeftImageBtn"
-        app:layout_constraintHorizontal_bias="0.041"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setStartPointToggleBtn" />
+        android:textSize="10sp"/>
 
     <TextView
         android:id="@+id/xLabelTextView"
@@ -281,11 +274,7 @@
         android:text="X:"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setStartPointToggleBtn" />
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/xAxisTextView"
@@ -295,9 +284,7 @@
         android:textAlignment="center"
         android:textColor="@color/colorRed"
         android:textSize="24sp"
-        android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/xLabelTextView"
-        app:layout_constraintTop_toBottomOf="@+id/setStartPointToggleBtn" />
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/yLabelTextView"
@@ -308,9 +295,7 @@
         android:text="Y:"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/xLabelTextView"
-        app:layout_constraintTop_toBottomOf="@+id/setStartPointToggleBtn" />
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/yAxisTextView"
@@ -320,9 +305,7 @@
         android:textAlignment="center"
         android:textColor="@color/colorRed"
         android:textSize="24sp"
-        android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/yLabelTextView"
-        app:layout_constraintTop_toBottomOf="@+id/setStartPointToggleBtn" />
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/directionLabelTextView"
@@ -333,9 +316,7 @@
         android:text="Direction:"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/yLabelTextView"
-        app:layout_constraintTop_toBottomOf="@+id/setStartPointToggleBtn" />
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/directionAxisTextView"
@@ -346,9 +327,7 @@
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="24sp"
-        android:visibility="gone"
-        app:layout_constraintStart_toEndOf="@+id/directionLabelTextView"
-        app:layout_constraintTop_toBottomOf="@+id/setStartPointToggleBtn" />
+        android:visibility="gone"/>
 
     <ImageButton
         android:id="@+id/directionChangeImageBtn"
@@ -360,12 +339,6 @@
         android:layout_marginBottom="8dp"
         android:background="@null"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/exploredImageBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.92"
         app:srcCompat="@drawable/icon_direction" />
 
     <ImageButton
@@ -377,10 +350,6 @@
         android:layout_marginEnd="8dp"
         android:background="@null"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exploreTextView"
         app:srcCompat="@drawable/icon_checked" />
 
     <ImageButton
@@ -392,12 +361,6 @@
         android:layout_marginEnd="28dp"
         android:background="@null"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/clearImageBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.976"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fastestResetImageBtn"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/icon_obstacle" />
 
     <ImageButton
@@ -409,10 +372,6 @@
         android:layout_marginBottom="56dp"
         android:background="@null"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/f1Btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.976"
-        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/icon_remove" />
 
     <TextView
@@ -427,9 +386,7 @@
         android:textColor="@color/colorWhite"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setStartPointToggleBtn" />
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/messageReceivedTitleTextView"
@@ -443,9 +400,7 @@
         android:textColor="@color/colorWhite"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setStartPointToggleBtn" />
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/messageSentTextView"
@@ -456,10 +411,7 @@
         android:gravity="bottom"
         android:scrollbars="vertical"
         android:textSize="12sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/messageSentTitleTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/messageSentTitleTextView" />
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/messageReceivedTextView"
@@ -471,9 +423,7 @@
         android:gravity="bottom"
         android:scrollbars="vertical"
         android:textSize="12sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/messageReceivedTitleTextView" />
+        android:visibility="gone"/>
 
     <ToggleButton
         android:id="@+id/manualAutoToggleBtn"
@@ -485,98 +435,37 @@
         android:textOff="AUTO"
         android:textOn="MANUAL"
         android:textSize="10sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textStyle="bold"/>
 
-    <Button
-        android:id="@+id/f1Btn"
-        android:layout_width="74dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="372dp"
-        android:background="@color/colorAccent"
-        android:contentDescription="F1 value"
-        android:text="F1"
-        android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/f2Btn"
-        android:layout_width="74dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="295dp"
-        android:background="@color/colorAccent"
-        android:contentDescription="F2 value"
-        android:text="F2"
-        android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/reconfigureBtn"
-        android:layout_width="74dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="214dp"
-        android:background="@color/colorAccent"
-        android:text="Recon"
-        android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
     <!--  55 x 55  -->
+
     <ImageButton
         android:id="@+id/moveForwardImageBtn"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="25dp"
-        android:layout_marginEnd="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mapView"
-        app:layout_constraintTop_toBottomOf="@+id/reconfigureBtn"
-        app:srcCompat="@drawable/ic_arrow_move_forward" />
+        android:layout_marginEnd="18dp"/>
     <!--  55 x 55  -->
     <ImageButton
         android:id="@+id/moveBackwardImageBtn"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mapView"
-        app:layout_constraintTop_toBottomOf="@+id/turnLeftImageBtn"
-        app:srcCompat="@drawable/ic_arrow_move_backward" />
+        android:layout_marginEnd="18dp"/>
     <!--  55 x 55  -->
     <ImageButton
         android:id="@+id/turnLeftImageBtn"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginStart="0dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintStart_toEndOf="@+id/mapView"
-        app:layout_constraintTop_toBottomOf="@+id/moveForwardImageBtn"
-        app:srcCompat="@drawable/ic_arrow_move_left" />
+        android:layout_marginEnd="10dp"/>
     <!--  55 x 55  -->
     <ImageButton
         android:id="@+id/turnRightImageBtn"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/moveForwardImageBtn"
-        app:srcCompat="@drawable/ic_arrow_move_right" />
+        android:layout_marginEnd="10dp"/>
 
     <Button
         android:id="@+id/left45Btn"
@@ -584,18 +473,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
         android:layout_marginEnd="0dp"
-        android:text="L45"
-        app:layout_constraintEnd_toStartOf="@+id/right45Btn"
-        app:layout_constraintStart_toEndOf="@+id/setStartPointToggleBtn"
-        app:layout_constraintTop_toBottomOf="@+id/mapView" />
+        android:text="L45"/>
 
     <Button
         android:id="@+id/right45Btn"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="9dp"
-        android:text="R45"
-        app:layout_constraintBottom_toTopOf="@+id/exploreToggleBtn"
-        app:layout_constraintEnd_toStartOf="@+id/calibrationBtn"
-        app:layout_constraintTop_toBottomOf="@+id/mapView" />
-</android.support.constraint.ConstraintLayout>
+        android:text="R45"/>
+</AbsoluteLayout>
