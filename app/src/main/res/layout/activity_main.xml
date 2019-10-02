@@ -30,7 +30,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="214dp"
         android:layout_x="485dp"
-        android:layout_y="289dp"
+        android:layout_y="281dp"
         android:background="@color/colorAccent"
         android:text="Recon"
         android:textAlignment="center"
@@ -45,7 +45,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="372dp"
         android:layout_x="485dp"
-        android:layout_y="148dp"
+        android:layout_y="140dp"
         android:background="@color/colorAccent"
         android:contentDescription="F1 value"
         android:text="F1"
@@ -61,7 +61,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="295dp"
         android:layout_x="485dp"
-        android:layout_y="218dp"
+        android:layout_y="210dp"
         android:background="@color/colorAccent"
         android:contentDescription="F2 value"
         android:text="F2"
@@ -72,48 +72,48 @@
 
     <ToggleButton
         android:id="@+id/fastestToggleBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="117dp"
+        android:layout_height="62dp"
         android:layout_marginStart="49dp"
         android:layout_marginTop="9dp"
-        android:layout_x="475dp"
-        android:layout_y="467dp"
+        android:layout_x="221dp"
+        android:layout_y="718dp"
         android:gravity="center_vertical"
         android:textAlignment="center"
         android:textOff="@string/fastest_button"
         android:textOn="STOP"
-        android:textSize="10sp" />
+        android:textSize="12sp" />
 
     <ToggleButton
         android:id="@+id/exploreToggleBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="118dp"
+        android:layout_height="64dp"
         android:layout_marginTop="57dp"
-        android:layout_x="476dp"
-        android:layout_y="390dp"
+        android:layout_x="50dp"
+        android:layout_y="717dp"
         android:gravity="center_vertical"
         android:textAlignment="center"
         android:textOff="@string/explore_button"
         android:textOn="STOP"
-        android:textSize="10sp" />
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/fastestTimeTextView"
-        android:layout_width="73dp"
-        android:layout_height="56dp"
+        android:layout_width="118dp"
+        android:layout_height="34dp"
         android:layout_marginStart="59dp"
-        android:layout_x="483dp"
-        android:layout_y="519dp"
+        android:layout_x="219dp"
+        android:layout_y="793dp"
         android:text="@string/default_time"
         android:textSize="10sp" />
 
     <TextView
         android:id="@+id/exploreTimeTextView"
-        android:layout_width="77dp"
-        android:layout_height="52dp"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
         android:layout_marginTop="118dp"
-        android:layout_x="483dp"
-        android:layout_y="438dp"
+        android:layout_x="52dp"
+        android:layout_y="789dp"
         android:text="@string/default_time"
         android:textSize="10sp" />
 
@@ -211,7 +211,7 @@
         android:text="@string/robot_status_title"
         android:textAlignment="center"
         android:textColor="@color/colorBlack"
-        android:textSize="10dp"
+        android:textSize="12dp"
         android:textStyle="bold" />
 
     <!--  wrap_content  -->
@@ -223,24 +223,24 @@
 
     <Switch
         android:id="@+id/phoneTiltSwitch"
-        android:layout_width="wrap_content"
+        android:layout_width="102dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="106dp"
         android:layout_marginEnd="8dp"
-        android:layout_x="203dp"
-        android:layout_y="826dp"
+        android:layout_x="54dp"
+        android:layout_y="830dp"
         android:splitTrack="false"
-        android:textSize="12sp"
-        android:text="TILT OFF" />
+        android:text="TILT OFF"
+        android:textSize="12sp" />
 
     <ToggleButton
         android:id="@+id/setWaypointToggleBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_x="203dp"
-        android:layout_y="746dp"
+        android:layout_x="482dp"
+        android:layout_y="540dp"
         android:background="@color/colorAccent"
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
@@ -254,8 +254,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_x="44dp"
-        android:layout_y="746dp"
+        android:layout_x="481dp"
+        android:layout_y="468dp"
         android:background="@color/colorAccent"
         android:padding="10px"
         android:textAlignment="center"
@@ -270,8 +270,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="30dp"
-        android:layout_x="47dp"
-        android:layout_y="817dp"
+        android:layout_x="477dp"
+        android:layout_y="605dp"
         android:background="@color/colorAccent"
         android:padding="10px"
         android:text="@string/reset_map_button"
@@ -461,8 +461,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="1dp"
-        android:layout_x="475dp"
-        android:layout_y="565dp"
+        android:layout_x="480dp"
+        android:layout_y="370dp"
         android:textAlignment="center"
         android:textOff="AUTO"
         android:textOn="MANUAL"
@@ -474,7 +474,7 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginEnd="10dp"
-        android:layout_x="478dp"
+        android:layout_x="509dp"
         android:layout_y="778dp"
         app:srcCompat="@drawable/ic_arrow_move_right" />
 
@@ -485,7 +485,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="18dp"
-        android:layout_x="427dp"
+        android:layout_x="458dp"
         android:layout_y="727dp"
         app:srcCompat="@drawable/ic_arrow_move_forward" />
 
@@ -495,7 +495,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
         android:layout_marginEnd="0dp"
-        android:layout_x="352dp"
+        android:layout_x="383dp"
         android:layout_y="718dp"
         android:text="L45" />
 
@@ -505,7 +505,7 @@
         android:layout_height="55dp"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="10dp"
-        android:layout_x="378dp"
+        android:layout_x="409dp"
         android:layout_y="778dp"
         app:srcCompat="@drawable/ic_arrow_move_left" />
 
@@ -515,7 +515,7 @@
         android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="18dp"
-        android:layout_x="427dp"
+        android:layout_x="458dp"
         android:layout_y="827dp"
         app:srcCompat="@drawable/ic_arrow_move_backward" />
 
@@ -524,7 +524,7 @@
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="9dp"
-        android:layout_x="484dp"
+        android:layout_x="515dp"
         android:layout_y="718dp"
         android:text="R45" />
 
