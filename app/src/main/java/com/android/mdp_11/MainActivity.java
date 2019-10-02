@@ -1,6 +1,7 @@
 package com.android.mdp_11;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothDevice;
@@ -858,6 +859,21 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 String premessage1 = premessage.substring(0,76);
                 String premessage2 = premessage.substring(77);
                 message = "{\"map\":[{\"explored\":" + premessage1 + ",\"length\":0,\"obstacle\":" + premessage2 + "f}]}";
+
+            }
+
+            else if ((premessage.substring(0,1) == "P1") || (premessage.substring(0,2) == "P2")){
+                message = premessage;
+                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                alertDialog.setTitle("P1 & P2 Strings");
+                alertDialog.setMessage(message);
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
 
             }
 
