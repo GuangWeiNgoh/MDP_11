@@ -20,24 +20,8 @@
         android:layout_width="450dp"
         android:layout_height="600dp"
         android:layout_marginStart="15dp"
-        android:layout_x="26dp"
+        android:layout_x="9dp"
         android:layout_y="136dp" />
-
-    <Button
-        android:id="@+id/f2Btn"
-        android:layout_width="74dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="295dp"
-        android:layout_x="494dp"
-        android:layout_y="204dp"
-        android:background="@color/colorAccent"
-        android:contentDescription="F2 value"
-        android:text="F2"
-        android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        android:textSize="16sp"
-        android:textStyle="bold" />
 
     <Button
         android:id="@+id/reconfigureBtn"
@@ -45,38 +29,46 @@
         android:layout_height="56dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="214dp"
-        android:layout_x="496dp"
-        android:layout_y="272dp"
+        android:layout_x="485dp"
+        android:layout_y="289dp"
         android:background="@color/colorAccent"
         android:text="Recon"
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:textStyle="bold" />
 
-    <ToggleButton
-        android:id="@+id/exploreToggleBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="57dp"
-        android:layout_x="487dp"
-        android:layout_y="349dp"
-        android:gravity="center_vertical"
-
+    <Button
+        android:id="@+id/f1Btn"
+        android:layout_width="74dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="372dp"
+        android:layout_x="485dp"
+        android:layout_y="148dp"
+        android:background="@color/colorAccent"
+        android:contentDescription="F1 value"
+        android:text="F1"
         android:textAlignment="center"
-        android:textOff="@string/explore_button"
-        android:textOn="STOP"
-        android:textSize="10sp" />
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp"
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/exploreTimeTextView"
-        android:layout_width="77dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="118dp"
-        android:layout_x="493dp"
-        android:layout_y="397dp"
-        android:text="@string/default_time"
-        android:textSize="10sp" />
+    <Button
+        android:id="@+id/f2Btn"
+        android:layout_width="74dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="295dp"
+        android:layout_x="485dp"
+        android:layout_y="218dp"
+        android:background="@color/colorAccent"
+        android:contentDescription="F2 value"
+        android:text="F2"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp"
+        android:textStyle="bold" />
 
     <ToggleButton
         android:id="@+id/fastestToggleBtn"
@@ -84,11 +76,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="49dp"
         android:layout_marginTop="9dp"
-        android:layout_x="490dp"
-        android:layout_y="456dp"
+        android:layout_x="475dp"
+        android:layout_y="467dp"
         android:gravity="center_vertical"
         android:textAlignment="center"
         android:textOff="@string/fastest_button"
+        android:textOn="STOP"
+        android:textSize="10sp" />
+
+    <ToggleButton
+        android:id="@+id/exploreToggleBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="57dp"
+        android:layout_x="476dp"
+        android:layout_y="390dp"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:textOff="@string/explore_button"
         android:textOn="STOP"
         android:textSize="10sp" />
 
@@ -97,26 +102,21 @@
         android:layout_width="73dp"
         android:layout_height="56dp"
         android:layout_marginStart="59dp"
-        android:layout_x="493dp"
-        android:layout_y="509dp"
+        android:layout_x="483dp"
+        android:layout_y="519dp"
         android:text="@string/default_time"
         android:textSize="10sp" />
 
-    <Button
-        android:id="@+id/f1Btn"
-        android:layout_width="74dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="372dp"
-        android:layout_x="496dp"
-        android:layout_y="136dp"
-        android:background="@color/colorAccent"
-        android:contentDescription="F1 value"
-        android:text="F1"
-        android:textAlignment="center"
-        android:textColor="@color/colorWhite"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/exploreTimeTextView"
+        android:layout_width="77dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="118dp"
+        android:layout_x="483dp"
+        android:layout_y="438dp"
+        android:text="@string/default_time"
+        android:textSize="10sp" />
+
 
     <TextView
         android:id="@+id/exploreTextView"
@@ -141,15 +141,19 @@
         app:srcCompat="@drawable/ic_refresh" />
     <!--  wrap_content  -->
 
-    <ImageButton
+    <Button
         android:id="@+id/calibrationBtn"
-        style="@android:style/Widget.Holo.Light.ImageButton"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
         android:layout_marginEnd="148dp"
         android:layout_marginBottom="52dp"
-        app:srcCompat="@drawable/ic_refresh" />
+        android:layout_x="475dp"
+        android:layout_y="630dp"
+        android:text="CALIBRATE"
+        android:textSize="11sp"
+        android:textStyle="bold"/>
+    <!--        app:srcCompat="@drawable/ic_refresh"-->
 
     <TextView
         android:id="@+id/fastestTextView"
@@ -183,8 +187,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
         android:layout_marginTop="75dp"
-        android:layout_x="122dp"
-        android:layout_y="74dp"
+        android:layout_x="125dp"
+        android:layout_y="82dp"
         android:background="@drawable/border"
         android:padding="8dp"
         android:scrollbars="vertical"
@@ -201,13 +205,20 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="15dp"
-        android:layout_x="-7dp"
-        android:layout_y="86dp"
+        android:layout_x="-4dp"
+        android:layout_y="94dp"
         android:text="@string/robot_status_title"
         android:textAlignment="center"
         android:textColor="@color/colorBlack"
         android:textSize="10dp"
         android:textStyle="bold" />
+
+    <!--  wrap_content  -->
+    <!--  210 x wrap_content  -->
+
+    <!--  150 x wrap_content  -->
+
+    <!--  30 x 40  -->
 
     <Switch
         android:id="@+id/phoneTiltSwitch"
@@ -216,27 +227,25 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="106dp"
         android:layout_marginEnd="8dp"
+        android:layout_x="203dp"
+        android:layout_y="826dp"
         android:splitTrack="false"
-        android:text="TILT OFF"/>
-    <!--  wrap_content  -->
-    <!--  210 x wrap_content  -->
+        android:textSize="12sp"
+        android:text="TILT OFF" />
 
-    <!--  150 x wrap_content  -->
-
-    <Button
-        android:id="@+id/resetMapBtn"
+    <ToggleButton
+        android:id="@+id/setWaypointToggleBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_x="203dp"
+        android:layout_y="746dp"
         android:background="@color/colorAccent"
-        android:padding="10px"
-        android:text="@string/reset_map_button"
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
-        android:textSize="10sp"/>
-
-    <!--  30 x 40  -->
+        android:textOff="@string/set_waypoint_button"
+        android:textOn="CANCEL"
+        android:textSize="12sp" />
 
     <ToggleButton
         android:id="@+id/setStartPointToggleBtn"
@@ -244,25 +253,30 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_x="44dp"
+        android:layout_y="746dp"
         android:background="@color/colorAccent"
         android:padding="10px"
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
         android:textOff="@string/set_start_point_button"
         android:textOn="CANCEL"
-        android:textSize="10sp"/>
+        android:textSize="12sp" />
 
-    <ToggleButton
-        android:id="@+id/setWaypointToggleBtn"
+    <Button
+        android:id="@+id/resetMapBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_x="47dp"
+        android:layout_y="817dp"
         android:background="@color/colorAccent"
+        android:padding="10px"
+        android:text="@string/reset_map_button"
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
-        android:textOff="@string/set_waypoint_button"
-        android:textOn="CANCEL"
-        android:textSize="10sp"/>
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/xLabelTextView"
@@ -331,45 +345,53 @@
 
     <ImageButton
         android:id="@+id/directionChangeImageBtn"
-        android:layout_width="57dp"
-        android:layout_height="67dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="200dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="8dp"
+        android:layout_x="440dp"
+        android:layout_y="85dp"
         android:background="@null"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/icon_direction" />
 
     <ImageButton
         android:id="@+id/exploredImageBtn"
-        android:layout_width="57dp"
-        android:layout_height="67dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="504dp"
         android:layout_marginTop="192dp"
         android:layout_marginEnd="8dp"
+        android:layout_x="480dp"
+        android:layout_y="85dp"
         android:background="@null"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/icon_checked" />
 
     <ImageButton
         android:id="@+id/obstacleImageBtn"
-        android:layout_width="57dp"
-        android:layout_height="67dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="28dp"
+        android:layout_x="520dp"
+        android:layout_y="85dp"
         android:background="@null"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/icon_obstacle" />
 
     <ImageButton
         android:id="@+id/clearImageBtn"
-        android:layout_width="57dp"
-        android:layout_height="67dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="56dp"
+        android:layout_x="560dp"
+        android:layout_y="85dp"
         android:background="@null"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/icon_remove" />
@@ -425,19 +447,35 @@
         android:textSize="12sp"
         android:visibility="gone"/>
 
+    <!--  55 x 55  -->
+
+    <!--  55 x 55  -->
+
+    <!--  55 x 55  -->
+    <!--  55 x 55  -->
+
     <ToggleButton
         android:id="@+id/manualAutoToggleBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="1dp"
+        android:layout_x="475dp"
+        android:layout_y="565dp"
         android:textAlignment="center"
         android:textOff="AUTO"
         android:textOn="MANUAL"
         android:textSize="10sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
-    <!--  55 x 55  -->
+    <ImageButton
+        android:id="@+id/turnRightImageBtn"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="10dp"
+        android:layout_x="478dp"
+        android:layout_y="778dp"
+        app:srcCompat="@drawable/ic_arrow_move_right" />
 
     <ImageButton
         android:id="@+id/moveForwardImageBtn"
@@ -445,27 +483,10 @@
         android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="25dp"
-        android:layout_marginEnd="18dp"/>
-    <!--  55 x 55  -->
-    <ImageButton
-        android:id="@+id/moveBackwardImageBtn"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="18dp"/>
-    <!--  55 x 55  -->
-    <ImageButton
-        android:id="@+id/turnLeftImageBtn"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="10dp"/>
-    <!--  55 x 55  -->
-    <ImageButton
-        android:id="@+id/turnRightImageBtn"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="10dp"/>
+        android:layout_marginEnd="18dp"
+        android:layout_x="427dp"
+        android:layout_y="727dp"
+        app:srcCompat="@drawable/ic_arrow_move_forward" />
 
     <Button
         android:id="@+id/left45Btn"
@@ -473,12 +494,37 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
         android:layout_marginEnd="0dp"
-        android:text="L45"/>
+        android:layout_x="352dp"
+        android:layout_y="718dp"
+        android:text="L45" />
+
+    <ImageButton
+        android:id="@+id/turnLeftImageBtn"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="10dp"
+        android:layout_x="378dp"
+        android:layout_y="778dp"
+        app:srcCompat="@drawable/ic_arrow_move_left" />
+
+    <ImageButton
+        android:id="@+id/moveBackwardImageBtn"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="18dp"
+        android:layout_x="427dp"
+        android:layout_y="827dp"
+        app:srcCompat="@drawable/ic_arrow_move_backward" />
 
     <Button
         android:id="@+id/right45Btn"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="9dp"
-        android:text="R45"/>
+        android:layout_x="484dp"
+        android:layout_y="718dp"
+        android:text="R45" />
+
 </AbsoluteLayout>

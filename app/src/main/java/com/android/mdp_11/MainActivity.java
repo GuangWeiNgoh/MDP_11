@@ -63,11 +63,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     TextView exploreTimeTextView, fastestTimeTextView;
     ToggleButton exploreToggleBtn, fastestToggleBtn;
     ImageButton exploreResetImageBtn, fastestResetImageBtn;
-    ImageButton calibrationBtn;
+//    ImageButton calibrationBtn;
     TextView robotStatusTextView;
     ImageButton moveForwardImageBtn, turnRightImageBtn, moveBackwardImageBtn, turnLeftImageBtn;
     Switch phoneTiltSwitch;
-    Button resetMapBtn, left45Btn, right45Btn;
+    Button resetMapBtn, left45Btn, right45Btn, calibrationBtn;
     ToggleButton setStartPointToggleBtn, setWaypointToggleBtn;
     TextView xAxisTextView, yAxisTextView, directionAxisTextView;
     ImageButton directionChangeImageBtn, exploredImageBtn, obstacleImageBtn, clearImageBtn;

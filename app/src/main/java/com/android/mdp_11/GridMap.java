@@ -1265,7 +1265,7 @@ public class GridMap extends View {
         ToggleButton manualAutoToggleBtn = ((Activity)this.getContext()).findViewById(R.id.manualAutoToggleBtn);
         Switch phoneTiltSwitch = ((Activity)this.getContext()).findViewById(R.id.phoneTiltSwitch);
         updateRobotAxis(0, 0, "None");
-        robotStatusTextView.setText("status");
+        robotStatusTextView.setText("Pending status...");
         sharedPreferences();
         editor.putString("receivedText", "");
         editor.putString("sentText", "");
