@@ -855,8 +855,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
 
             else if (premessage.substring(0,3).equals("map")){
-                premessage = premessage.substring(6);
-                message = "{\"map\":[{\"explored\":" + premessage + "\",\"length\":0,\"obstacle\":\"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111111111111\"}]}";
+                premessage = premessage.substring(0,76);
+                String premessage1 = premessage.substring(78);
+                message = "{\"map\":[{\"explored\":" + premessage + "\",\"length\":0,\"obstacle\":" + premessage1 + "}]}";
 
             }
 
