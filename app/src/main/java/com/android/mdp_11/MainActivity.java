@@ -862,8 +862,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             }
 
-            else if ((premessage.substring(0,1) == "P1") || (premessage.substring(0,2) == "P2")){
-                message = premessage;
+
+
+            else if (premessage.substring(0,2).equals("P1")){
+                String p1 = premessage.substring(3,79);
+                String p2 = premessage.substring(80);
+
+                message = "P1 Hexa-String: " + p1 + " , P2 Hexa-String: " + p2;
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                 alertDialog.setTitle("P1 & P2 Strings");
                 alertDialog.setMessage(message);
