@@ -854,9 +854,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             }
 
-            else if (premessage.length() == 76){
+            else if (premessage.substring(0,3).equals("map")){
+                premessage = premessage.substring(6);
                 message = "{\"map\":[{\"explored\":" + premessage + "\",\"length\":0,\"obstacle\":\"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111111111111\"}]}";
+
             }
+
+            //else if (premessage.length() == 76){
+            //    message = "{\"map\":[{\"explored\":" + premessage + "\",\"length\":0,\"obstacle\":\"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111111111111\"}]}";
+            //}
 
 
 
