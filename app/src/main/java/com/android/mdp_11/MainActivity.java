@@ -868,7 +868,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 String p1 = premessage.substring(3,79);
                 String p2 = premessage.substring(80);
 
-                message = "P1 Hexa-String: " + p1 + " , P2 Hexa-String: " + p2;
+                message = "P1 Hexa-String:\n" + p1 + "\n\nP2 Hexa-String:\n" + p2;
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                 alertDialog.setTitle("P1 & P2 Strings");
                 alertDialog.setMessage(message);

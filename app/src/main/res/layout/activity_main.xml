@@ -152,7 +152,8 @@
         android:layout_y="630dp"
         android:text="CALIBRATE"
         android:textSize="11sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:visibility="gone"/>
     <!--        app:srcCompat="@drawable/ic_refresh"-->
 
     <TextView
