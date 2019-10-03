@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MDP_11 Android.iml" filepath="$PROJECT_DIR$/MDP_11 Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/MDP_final.iml" filepath="$PROJECT_DIR$/MDP_final.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
