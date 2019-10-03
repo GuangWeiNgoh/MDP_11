@@ -930,7 +930,7 @@ public class GridMap extends View {
                     for (int row = ROW-1; row >= 0; row--)
                         for (int col = 1; col <= COL; col++)
                             if ((cells[col][row].type.equals("explored")||(cells[col][row].type.equals("robot"))) && k < obstacleString.length()) {
-                                if ((String.valueOf(obstacleString.charAt(k))).equals("1"))
+                                if ((String.valueOf(obstacleString.charAt(k+2))).equals("1"))
                                     this.setObstacleCoord(col, 20 - row);
                                 k++;
                             }
