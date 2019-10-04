@@ -30,6 +30,9 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
 public class GridMap extends View {
 
     private static final String TAG = "GridMap";
@@ -323,11 +326,20 @@ public class GridMap extends View {
         alertDialog.setTitle("Setting Waypoint Location");
         alertDialog.setMessage("X Coordinate: " + (col-1) + "\nY Coordinate: " + (row-1));
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 });
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "NO",
+
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
         alertDialog.show();
         showLog("Entering setWaypointCoord");
         waypointCoord[0] = col;
