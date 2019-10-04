@@ -1,7 +1,9 @@
 package com.android.mdp_11;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -317,6 +319,16 @@ public class GridMap extends View {
     }
 
     private void setWaypointCoord(int col, int row) throws JSONException {
+        AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+        alertDialog.setTitle("Setting Waypoint Location");
+        alertDialog.setMessage("X Coordinate: " + (col-1) + "\nY Coordinate: " + (row-1));
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
         showLog("Entering setWaypointCoord");
         waypointCoord[0] = col;
         waypointCoord[1] = row;

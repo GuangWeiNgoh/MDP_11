@@ -454,7 +454,7 @@
 
     <!--  55 x 55  -->
     <!--  55 x 55  -->
-
+    <!--  475x 565y  -->
     <ToggleButton
         android:id="@+id/manualAutoToggleBtn"
         android:layout_width="wrap_content"
