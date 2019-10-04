@@ -855,7 +855,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             }
 
-            else if (premessage.length() == 152){
+            else if (premessage.length() == 153){
                 String premessage1 = premessage.substring(0,76);
                 String premessage2 = premessage.substring(77);
                 message = "{\"map\":[{\"explored\":" + premessage1 + ",\"length\":300,\"obstacle\":" + premessage2 + "}]}";
