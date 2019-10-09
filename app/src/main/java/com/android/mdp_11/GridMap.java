@@ -321,6 +321,9 @@ public class GridMap extends View {
         return robotDirection;
     }
 
+
+
+
     private void setWaypointCoord(int col, int row) throws JSONException {
         AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
         alertDialog.setTitle("Setting Waypoint Location");
@@ -329,7 +332,7 @@ public class GridMap extends View {
 
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
+
                     }
                 });
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "NO",
@@ -953,11 +956,11 @@ public class GridMap extends View {
                     int k = 0;
                     for (int row = ROW-1; row >= 0; row--)
                         for (int col = 1; col <= COL; col++)
-                            if ((cells[col][row].type.equals("explored")||(cells[col][row].type.equals("robot"))) && k < obstacleString.length()) {
+                            //if ((cells[col][row].type.equals("explored")||(cells[col][row].type.equals("robot"))) && k < obstacleString.length()) {
                                 if ((String.valueOf(obstacleString.charAt(k+2))).equals("1"))
                                     this.setObstacleCoord(col, 20 - row);
                                 k++;
-                            }
+
 
                     int[] waypointCoord = this.getWaypointCoord();
                     if (waypointCoord[0] >= 1 && waypointCoord[1] >= 1)
