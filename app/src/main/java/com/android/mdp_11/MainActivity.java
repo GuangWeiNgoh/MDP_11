@@ -41,6 +41,7 @@ import org.json.JSONObject;
 
 import java.math.BigInteger;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     GridMap gridMap;
     MessageBox messageBox;
-    TextView connStatusTextView;
+    TextView connStatusTextView, P1String, P2String;
     MenuItem bluetoothMenuItem, messageMenuItem, getMapMenuItem;
     TextView exploreTimeTextView, fastestTimeTextView;
     ToggleButton exploreToggleBtn, fastestToggleBtn;
@@ -172,6 +173,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         f1Btn = findViewById(R.id.f1Btn);
         f2Btn = findViewById(R.id.f2Btn);
         reconfigureBtn = findViewById(R.id.reconfigureBtn);
+        P1String = findViewById(R.id.P1String);
+        P2String = findViewById(R.id.P2String);
 
         MainActivity.context = getApplicationContext();
         this.sharedPreferences();
@@ -439,6 +442,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 showLog("Clicked resetMapBtn");
                 showToast("Reseting map...");
                 gridMap.resetMap();
+                resetStrings();
+                exploreTimeTextView.setText("00:00");
+                fastestTimeTextView.setText("00:00");
             }
         });
 
@@ -631,6 +637,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         xAxisTextView.setText(String.valueOf(gridMap.getCurCoord()[0]));
         yAxisTextView.setText(String.valueOf(gridMap.getCurCoord()[1]));
         directionAxisTextView.setText(sharedPreferences.getString("direction",""));
+    }
+
+    public void resetStrings(){
+        P1String.setText("Awaiting P1 Hex String Value...");
+        P2String.setText("Awaiting P2 Hex String Value...");
+    }
+
+    public void setStrings(String p1,String p2){
+        P1String.setText(p1);
+        P2String.setText(p2);
     }
 
     public void refreshMessage() {
@@ -858,17 +874,98 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             else if (premessage.length() == 153){
                 String premessage1 = premessage.substring(0,76);
                 String premessage2 = premessage.substring(77);
+                StringBuilder bin1 = new StringBuilder(new BigInteger(premessage1, 16).toString(2));
+                StringBuilder bin2 = new StringBuilder(new BigInteger(premessage2, 16).toString(2));
+                String bin2post;
+                int i;
+                ArrayList<Integer> notex = new ArrayList<>();
+
+                for (i=0; i<bin1.length(); i++){
+                    if(bin1.substring(i,i+1).equals("0")){
+                        notex.add(i);
+                    }
+                }
+
+                //showLog("" + notex);
+                showLog("Binary 1:" + bin1 +"\n");
+                showLog("Binary 2:" + bin2 +"\n");
+
+                for (i=0; i<notex.size(); i++){
+                    bin2.setCharAt(notex.get(i), 'x');
+                }
+
+                showLog("Binary 1 Post:" + bin1 +"\n");
+                showLog("Binary 2 Post:" + bin2 +"\n");
+
+                bin2post = bin2.toString();
+                bin2post = bin2post.replaceAll("x","");
+                showLog("Binary 2 Replaced:" + bin2post +"\n");
+                bin2post = bin2post.substring(2,bin2post.length()-2);
+                showLog("Binary 2 Replaced:" + bin2post +"\n");
+
+                while (bin2post.length() % 4 != 0) {
+                    bin2post = bin2post + "0";
+                }
+                int length = bin2post.length();
+                int hexlength = length / 4 + ((length % 4 == 0) ? 0 : 1);
+                showLog("Binary 2 Length:" + length +"\n");
+                showLog("Binary 2 Hex Length:" + hexlength +"\n");
+                BigInteger bin2BI = new BigInteger(bin2post, 2);
+                showLog("Binary 2 Big Int:" + bin2BI +"\n");
+                String bin2hex = bin2BI.toString(16);
+
+                while (bin2hex.length() < hexlength){
+                    bin2hex = "0" + bin2hex;
+                }
+                showLog("Binary 2 Hex:" + bin2hex +"\n");
+
+                setStrings(premessage1,bin2hex);
                 message = "{\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}]}";
 
             }
 
 
 
-            else if (premessage.substring(0,2).equals("P1")){
+            else if (premessage.substring(0,2).equals("P1") && (premessage.length() == 156)){
                 String p1 = premessage.substring(3,79);
                 String p2 = premessage.substring(80);
 
-                message = "P1 Hexa-String:\n" + p1 + "\n\nP2 Hexa-String:\n" + p2;
+                StringBuilder bin1 = new StringBuilder(new BigInteger(p1, 16).toString(2));
+                StringBuilder bin2 = new StringBuilder(new BigInteger(p2, 16).toString(2));
+                String bin2post;
+                int i;
+                ArrayList<Integer> notex = new ArrayList<>();
+
+                for (i=0; i<bin1.length(); i++){
+                    if(bin1.substring(i,i+1).equals("0")){
+                        notex.add(i);
+                    }
+                }
+
+                for (i=0; i<notex.size(); i++){
+                    bin2.setCharAt(notex.get(i), 'x');
+                }
+
+                bin2post = bin2.toString();
+                bin2post = bin2post.replaceAll("x","");
+                bin2post = bin2post.substring(2,bin2post.length()-2);
+
+                while (bin2post.length() % 4 != 0) {
+                    bin2post = bin2post + "0";
+                }
+                int length = bin2post.length();
+                int hexlength = length / 4 + ((length % 4 == 0) ? 0 : 1);
+
+                BigInteger bin2BI = new BigInteger(bin2post, 2);
+                String bin2hex = bin2BI.toString(16);
+
+                while (bin2hex.length() < hexlength){
+                    bin2hex = "0" + bin2hex;
+                }
+
+                setStrings(p1,bin2hex);
+
+                message = "P1 Hexa-String:\n" + p1 + "\n\nP2 Hexa-String:\n" + bin2hex;
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                 alertDialog.setTitle("P1 & P2 Strings");
                 alertDialog.setMessage(message);

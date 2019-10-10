@@ -70,30 +70,31 @@
         android:textSize="12sp"
         android:textStyle="bold" />
 
-    <ToggleButton
-        android:id="@+id/fastestToggleBtn"
-        android:layout_width="117dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="49dp"
-        android:layout_marginTop="9dp"
-        android:layout_x="221dp"
-        android:layout_y="718dp"
-        android:gravity="center_vertical"
-        android:textAlignment="center"
-        android:textOff="@string/fastest_button"
-        android:textOn="STOP"
-        android:textSize="12sp" />
 
     <ToggleButton
         android:id="@+id/exploreToggleBtn"
         android:layout_width="118dp"
         android:layout_height="64dp"
         android:layout_marginTop="57dp"
-        android:layout_x="50dp"
-        android:layout_y="717dp"
+        android:layout_x="32dp"
+        android:layout_y="715dp"
         android:gravity="center_vertical"
         android:textAlignment="center"
         android:textOff="@string/explore_button"
+        android:textOn="STOP"
+        android:textSize="12sp" />
+
+    <ToggleButton
+        android:id="@+id/fastestToggleBtn"
+        android:layout_width="117dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="9dp"
+        android:layout_x="202dp"
+        android:layout_y="714dp"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:textOff="@string/fastest_button"
         android:textOn="STOP"
         android:textSize="12sp" />
 
@@ -102,8 +103,8 @@
         android:layout_width="118dp"
         android:layout_height="34dp"
         android:layout_marginStart="59dp"
-        android:layout_x="219dp"
-        android:layout_y="793dp"
+        android:layout_x="324dp"
+        android:layout_y="735dp"
         android:text="@string/default_time"
         android:textSize="10sp" />
 
@@ -112,11 +113,10 @@
         android:layout_width="120dp"
         android:layout_height="35dp"
         android:layout_marginTop="118dp"
-        android:layout_x="52dp"
-        android:layout_y="789dp"
+        android:layout_x="152dp"
+        android:layout_y="736dp"
         android:text="@string/default_time"
         android:textSize="10sp" />
-
 
     <TextView
         android:id="@+id/exploreTextView"
@@ -228,8 +228,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="106dp"
         android:layout_marginEnd="8dp"
-        android:layout_x="54dp"
-        android:layout_y="830dp"
+        android:layout_x="485dp"
+        android:layout_y="650dp"
         android:splitTrack="false"
         android:text="TILT OFF"
         android:textSize="12sp" />
@@ -239,8 +239,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_x="482dp"
-        android:layout_y="540dp"
+        android:layout_x="485dp"
+        android:layout_y="520dp"
         android:background="@color/colorAccent"
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
@@ -254,8 +254,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_x="481dp"
-        android:layout_y="468dp"
+        android:layout_x="485dp"
+        android:layout_y="455dp"
         android:background="@color/colorAccent"
         android:padding="10px"
         android:textAlignment="center"
@@ -270,8 +270,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="30dp"
-        android:layout_x="477dp"
-        android:layout_y="605dp"
+        android:layout_x="485dp"
+        android:layout_y="585dp"
         android:background="@color/colorAccent"
         android:padding="10px"
         android:text="@string/reset_map_button"
@@ -527,5 +527,39 @@
         android:layout_x="515dp"
         android:layout_y="718dp"
         android:text="R45" />
+
+    <TextView
+        android:id="@+id/P1String"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_x="69dp"
+        android:layout_y="801dp"
+        android:text="Awaiting P1 Hex String Value..."
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/P2String"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_x="69dp"
+        android:layout_y="837dp"
+        android:text="Awaiting P2 Hex String Value..."
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/P1Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="34dp"
+        android:layout_y="801dp"
+        android:text="P1 :" />
+
+    <TextView
+        android:id="@+id/P2Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="34dp"
+        android:layout_y="837dp"
+        android:text="P2 :" />
 
 </AbsoluteLayout>

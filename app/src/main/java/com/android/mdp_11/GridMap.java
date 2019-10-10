@@ -11,6 +11,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -58,6 +61,7 @@ public class GridMap extends View {
     private static boolean unSetCellStatus = false;
     private static boolean setExploredStatus = false;
     private static boolean validPosition = false;
+    private boolean mResult;
     private Bitmap arrowBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_arrow_error);
 
     private Paint blackPaint = new Paint();
@@ -321,29 +325,22 @@ public class GridMap extends View {
         return robotDirection;
     }
 
-
-
-
     private void setWaypointCoord(int col, int row) throws JSONException {
-        AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
-        alertDialog.setTitle("Setting Waypoint Location");
-        alertDialog.setMessage("X Coordinate: " + (col-1) + "\nY Coordinate: " + (row-1));
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
 
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+//        if (getYesNoWithExecutionStop("Setting Waypoint Coordinates", "X Coordinate: " + (col-1) + "\nY Coordinate: " + (row-1), getContext())){
+//            showLog("Entering setWaypointCoord");
+//            waypointCoord[0] = col;
+//            waypointCoord[1] = row;
+//
+//            row = this.convertRow(row);
+//            cells[col][row].setType("waypoint");
+//
+//            MainActivity.printMessage("waypoint", waypointCoord[0], waypointCoord[1]);
+//            showLog("Exiting setWaypointCoord");
+//        } else {
+//            showLog("Canceled waypoint setting");
+//        }
 
-                    }
-                });
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "NO",
-
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-        alertDialog.show();
         showLog("Entering setWaypointCoord");
         waypointCoord[0] = col;
         waypointCoord[1] = row;
@@ -353,6 +350,42 @@ public class GridMap extends View {
 
         MainActivity.printMessage("waypoint", waypointCoord[0], waypointCoord[1]);
         showLog("Exiting setWaypointCoord");
+
+    }
+
+    public boolean getYesNoWithExecutionStop(String title, String message, Context context) {
+        // make a handler that throws a runtime exception when a message is received
+        final Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message mesg) {
+                throw new RuntimeException();
+            }
+        };
+
+        // make a text input dialog and show it
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle(title);
+        alert.setMessage(message);
+        alert.setCancelable(false);
+        alert.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                mResult = true;
+                handler.sendMessage(handler.obtainMessage());
+            }
+        });
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                mResult = false;
+                handler.sendMessage(handler.obtainMessage());
+            }
+        });
+        alert.show();
+
+        // loop till a runtime exception is triggered.
+        try { Looper.loop(); }
+        catch(RuntimeException e2) {}
+
+        return mResult;
     }
 
     private int[] getWaypointCoord() {
@@ -953,14 +986,24 @@ public class GridMap extends View {
                     }
                     showLog("updateMapInformation obstacleString: " + obstacleString);
 
-                    int k = 0;
-                    for (int row = ROW-1; row >= 0; row--)
-                        for (int col = 1; col <= COL; col++)
-                            //if ((cells[col][row].type.equals("explored")||(cells[col][row].type.equals("robot"))) && k < obstacleString.length()) {
-                                if ((String.valueOf(obstacleString.charAt(k+2))).equals("1"))
-                                    this.setObstacleCoord(col, 20 - row);
-                                k++;
+//                    int k = 0;
+//                    for (int row = ROW-1; row >= 0; row--){
+//                        for (int col = 1; col <= COL; col++) {
+//                            if ((cells[col][row].type.equals("explored") || (cells[col][row].type.equals("robot"))) && k < obstacleString.length()) {
+//                                if ((String.valueOf(obstacleString.charAt(k + 2))).equals("1"))
+//                                    this.setObstacleCoord(col, 20 - row);
+//                                k++;
+//                            }
+//                        }
+//                    }
+                    int n, m;
+                    for (int j=0; j<obstacleString.length()-4; j++) {
+                        m = 19 - (j/15);
+                        n = 1 + j - ((19-m)*15);
+                        if ((String.valueOf(obstacleString.charAt(j+2))).equals("1") && !cells[n][m].type.equals("robot"))
+                            cells[n][m].setType("obstacle");
 
+                    }
 
                     int[] waypointCoord = this.getWaypointCoord();
                     if (waypointCoord[0] >= 1 && waypointCoord[1] >= 1)
