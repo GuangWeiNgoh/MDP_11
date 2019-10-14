@@ -921,9 +921,21 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 showLog("Binary 2 Hex:" + bin2hex +"\n");
 
                 setStrings(premessage1,bin2hex);
-                
 
-                message = "{\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}],\"move\":[{\"direction\":\"forward\"}]}";
+                String autoDirection = "";
+                switch (premessage3) {
+                    case "f":
+                        autoDirection = "forward";
+                        break;
+                    case "r":
+                        autoDirection = "right";
+                        break;
+                    case "l":
+                        autoDirection = "left";
+                        break;
+                }
+
+                message = "{\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}],\"move\":[{\"direction\":\"" + autoDirection + "\"}]}";
 
             }
 
