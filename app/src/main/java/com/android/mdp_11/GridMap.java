@@ -240,42 +240,42 @@ public class GridMap extends View {
             startCoord[1] = row;
 
             if (this.getStartCoordStatus())
-                this.setCurCoord(col, row, "up");
+                this.setCurCoord(col, row, "right");
             showLog("Exiting setStartCoord");
         } else if ((row<=1) && (col>1 && col<15)){
             startCoord[0] = col;
             startCoord[1] = 2;
 
             if (this.getStartCoordStatus())
-                this.setCurCoord(col, 2, "up");
+                this.setCurCoord(col, 2, "right");
             showLog("Exiting setStartCoord");
         } else if ((row>=20) && (col>1 && col<15)){
             startCoord[0] = col;
             startCoord[1] = 19;
 
             if (this.getStartCoordStatus())
-                this.setCurCoord(col, 19, "up");
+                this.setCurCoord(col, 19, "right");
             showLog("Exiting setStartCoord");
         } else if ((row>1 && row<20) && (col<=1)){
             startCoord[0] = 2;
             startCoord[1] = row;
 
             if (this.getStartCoordStatus())
-                this.setCurCoord(2, row, "up");
+                this.setCurCoord(2, row, "right");
             showLog("Exiting setStartCoord");
         } else if ((row>1 && row<20) && (col>=15)){
             startCoord[0] = 14;
             startCoord[1] = row;
 
             if (this.getStartCoordStatus())
-                this.setCurCoord(14, row, "up");
+                this.setCurCoord(14, row, "right");
             showLog("Exiting setStartCoord");
         } else {
             startCoord[0] = 2;
             startCoord[1] = 2;
 
             if (this.getStartCoordStatus())
-                this.setCurCoord(2, 2, "up");
+                this.setCurCoord(2, 2, "right");
             showLog("Exiting setStartCoord");
         }
 
