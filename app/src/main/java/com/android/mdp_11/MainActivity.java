@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         timerHandler.post(timedMessage);
 
-       // LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiver, new IntentFilter("incomingMessage"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiver, new IntentFilter("incomingMessage"));
 
         if (savedInstanceState != null) {
             showLog("Entering savedInstanceState");
@@ -848,7 +848,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             editor.commit();
         }
     };
-/* COMMENT FOR FASTEST PATH
+
     BroadcastReceiver messageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -1045,7 +1045,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             editor.commit();
         }
     };
-*/
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -1063,7 +1063,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onDestroy(){
         super.onDestroy();
         try{
-         //   LocalBroadcastManager.getInstance(this).unregisterReceiver(messageReceiver);
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(messageReceiver);
             LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver5);
             mSensorManager.unregisterListener(this);
         } catch(IllegalArgumentException e){
