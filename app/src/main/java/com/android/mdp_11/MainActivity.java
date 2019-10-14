@@ -871,9 +871,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             }
 
-            else if (premessage.length() == 153){
+            else if (premessage.length() == 155){
                 String premessage1 = premessage.substring(0,76);
-                String premessage2 = premessage.substring(77);
+                String premessage2 = premessage.substring(77,153);
+                String premessage3 = premessage.substring(154);
                 StringBuilder bin1 = new StringBuilder(new BigInteger(premessage1, 16).toString(2));
                 StringBuilder bin2 = new StringBuilder(new BigInteger(premessage2, 16).toString(2));
                 String bin2post;
@@ -920,7 +921,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 showLog("Binary 2 Hex:" + bin2hex +"\n");
 
                 setStrings(premessage1,bin2hex);
-                message = "{\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}]}";
+                
+
+                message = "{\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}],\"move\":[{\"direction\":\"forward\"}]}";
 
             }
 
