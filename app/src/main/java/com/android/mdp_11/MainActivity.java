@@ -867,14 +867,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 } else {
                     message = premessage;
                 }
-
-
             }
 
             else if (premessage.length() == 155){
                 String premessage1 = premessage.substring(0,76);
                 String premessage2 = premessage.substring(77,153);
                 String premessage3 = premessage.substring(154);
+
                 StringBuilder bin1 = new StringBuilder(new BigInteger(premessage1, 16).toString(2));
                 StringBuilder bin2 = new StringBuilder(new BigInteger(premessage2, 16).toString(2));
                 String bin2post;
@@ -924,22 +923,120 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                 String autoDirection = "";
                 switch (premessage3) {
-                    case "f":
+                    case "1":
                         autoDirection = "forward";
                         break;
-                    case "r":
+                    case "d":
                         autoDirection = "right";
                         break;
-                    case "l":
+                    case "a":
                         autoDirection = "left";
                         break;
+                    case "c":
+                        return;
                 }
 
                 message = "{\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}],\"move\":[{\"direction\":\"" + autoDirection + "\"}]}";
 
             }
 
+            else if (premessage.length() > 156){
+                String premessage1 = premessage.substring(0,76);
+                String premessage2 = premessage.substring(77,153);
+                String premessage3 = premessage.substring(154);
 
+                StringBuilder bin1 = new StringBuilder(new BigInteger(premessage1, 16).toString(2));
+                StringBuilder bin2 = new StringBuilder(new BigInteger(premessage2, 16).toString(2));
+                String bin2post;
+                int i;
+                ArrayList<Integer> notex = new ArrayList<>();
+
+                for (i=0; i<bin1.length(); i++){
+                    if(bin1.substring(i,i+1).equals("0")){
+                        notex.add(i);
+                    }
+                }
+
+                //showLog("" + notex);
+                showLog("Binary 1:" + bin1 +"\n");
+                showLog("Binary 2:" + bin2 +"\n");
+
+                for (i=0; i<notex.size(); i++){
+                    bin2.setCharAt(notex.get(i), 'x');
+                }
+
+                showLog("Binary 1 Post:" + bin1 +"\n");
+                showLog("Binary 2 Post:" + bin2 +"\n");
+
+                bin2post = bin2.toString();
+                bin2post = bin2post.replaceAll("x","");
+                showLog("Binary 2 Replaced:" + bin2post +"\n");
+                bin2post = bin2post.substring(2,bin2post.length()-2);
+                showLog("Binary 2 Replaced:" + bin2post +"\n");
+
+                while (bin2post.length() % 4 != 0) {
+                    bin2post = bin2post + "0";
+                }
+                int length = bin2post.length();
+                int hexlength = length / 4 + ((length % 4 == 0) ? 0 : 1);
+                showLog("Binary 2 Length:" + length +"\n");
+                showLog("Binary 2 Hex Length:" + hexlength +"\n");
+                BigInteger bin2BI = new BigInteger(bin2post, 2);
+                showLog("Binary 2 Big Int:" + bin2BI +"\n");
+                String bin2hex = bin2BI.toString(16);
+
+                while (bin2hex.length() < hexlength){
+                    bin2hex = "0" + bin2hex;
+                }
+                showLog("Binary 2 Hex:" + bin2hex +"\n");
+
+                setStrings(premessage1,bin2hex);
+
+                showLog(premessage3);
+                Pattern pattern1 = Pattern.compile("^(.*?),");
+                Matcher matcher1 = pattern1.matcher(premessage3);
+                Pattern pattern2 = Pattern.compile("\\S+,(.*?),\\S+");
+                Matcher matcher2 = pattern2.matcher(premessage3);
+                Pattern pattern3 = Pattern.compile(",\\S+,(.*?)$");
+                Matcher matcher3 = pattern3.matcher(premessage3);
+//                matcher1.find();
+//                matcher2.find();
+//                matcher3.find();
+                if (matcher1.find() && matcher2.find() && matcher3.find())
+                {
+                    //showLog("Test enter!!!!");
+                    showLog(matcher1.group(1));
+                    showLog(matcher2.group(1));
+                    showLog(matcher3.group(1));
+                    String autoFace = "";
+                    switch (matcher1.group(1)) {
+                        case "n":
+                            autoFace = "up";
+                            break;
+                        case "s":
+                            autoFace = "back";
+                            break;
+                        case "e":
+                            autoFace = "right";
+                            break;
+                        case "w":
+                            autoFace = "left";
+                            break;
+                    }
+
+                    int xcoordint = Integer.parseInt(matcher2.group(1)) + 1;
+                    int ycoordint = Integer.parseInt(matcher3.group(1)) + 1;
+                    String xcoord = Integer.toString(xcoordint);
+                    String ycoord = Integer.toString(ycoordint);
+
+                    showLog(autoFace);
+                    //message = "{\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}],\"robot\":[{direction:\"" + autoFace + "\",\"x\":" + matcher2.group(1) + ",\"y\":" + matcher3.group(1) + "}]}";
+                    message = "{\"robot\":[{direction:\"" + autoFace + "\",\"x\":" + xcoord + ",\"y\":" + ycoord + "}],\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}]}";
+                    showLog(message);
+                } else {
+                    message = premessage;
+                }
+            }
 
             else if (premessage.substring(0,2).equals("P1") && (premessage.length() == 156)){
                 String p1 = premessage.substring(3,79);
