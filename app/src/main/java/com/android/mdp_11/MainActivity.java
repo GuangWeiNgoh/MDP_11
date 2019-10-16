@@ -1010,16 +1010,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     showLog(matcher3.group(1));
                     String autoFace = "";
                     switch (matcher1.group(1)) {
-                        case "n":
+                        case "NORTH":
                             autoFace = "up";
                             break;
-                        case "s":
+                        case "SOUTH":
                             autoFace = "back";
                             break;
-                        case "e":
+                        case "EAST":
                             autoFace = "right";
                             break;
-                        case "w":
+                        case "WEST":
                             autoFace = "left";
                             break;
                     }
@@ -1031,7 +1031,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                     showLog(autoFace);
                     //message = "{\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}],\"robot\":[{direction:\"" + autoFace + "\",\"x\":" + matcher2.group(1) + ",\"y\":" + matcher3.group(1) + "}]}";
-                    message = "{\"robot\":[{direction:\"" + autoFace + "\",\"x\":" + xcoord + ",\"y\":" + ycoord + "}],\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}]}";
+                    message = "{\"robot\":[{direction:\"" + autoFace + "\",\"x\":" + ycoord + ",\"y\":" + xcoord + "}],\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}]}";
                     showLog(message);
                 } else {
                     message = premessage;
