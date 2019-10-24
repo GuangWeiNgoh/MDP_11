@@ -55,12 +55,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private static long exploreTimer;
     private static long fastestTimer;
+    private static String imageString = "";
     private static boolean startActivityStatus = true;
     public String connStatus = "Disconnected";
 
     GridMap gridMap;
     MessageBox messageBox;
-    TextView connStatusTextView, P1String, P2String;
+    TextView connStatusTextView, P1String, P2String, ImageRecognised;
     MenuItem bluetoothMenuItem, messageMenuItem, getMapMenuItem;
     TextView exploreTimeTextView, fastestTimeTextView;
     ToggleButton exploreToggleBtn, fastestToggleBtn;
@@ -175,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         reconfigureBtn = findViewById(R.id.reconfigureBtn);
         P1String = findViewById(R.id.P1String);
         P2String = findViewById(R.id.P2String);
+        ImageRecognised = findViewById(R.id.ImageString);
 
         MainActivity.context = getApplicationContext();
         this.sharedPreferences();
@@ -224,6 +226,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 else if (exploreToggleBtn.getText().equals("STOP")) {
                     showToast("Exploration timer start!");
                     printMessage("AL:x");
+                    robotStatusTextView.setText("Exploring");
                     exploreTimer = System.currentTimeMillis();
                     timerHandler.postDelayed(timerRunnableExplore, 0);
                 }
@@ -445,6 +448,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 resetStrings();
                 exploreTimeTextView.setText("00:00");
                 fastestTimeTextView.setText("00:00");
+                robotStatusTextView.setText("Pending status...");
             }
         });
 
@@ -642,11 +646,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void resetStrings(){
         P1String.setText("Awaiting P1 Hex String Value...");
         P2String.setText("Awaiting P2 Hex String Value...");
+        ImageRecognised.setText("Awaiting Recognised Images...");
+        imageString = "";
     }
 
     public void setStrings(String p1,String p2){
         P1String.setText(p1);
         P2String.setText(p2);
+    }
+
+    public void setImageString(String imagestring){
+        ImageRecognised.setText(imagestring);
     }
 
     public void refreshMessage() {
@@ -854,19 +864,69 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         public void onReceive(Context context, Intent intent) {
             String premessage = intent.getStringExtra("receivedMessage");
             String message;
-            if (premessage.substring(0,3).equals("RPi")){
-                Pattern pattern1 = Pattern.compile(":(.*?),");
-                Matcher matcher1 = pattern1.matcher(premessage);
-                Pattern pattern2 = Pattern.compile(",(.*?),");
-                Matcher matcher2 = pattern2.matcher(premessage);
-                Pattern pattern3 = Pattern.compile(",\\S,(.*?)$");
-                Matcher matcher3 = pattern3.matcher(premessage);
-                if (matcher1.find() && matcher2.find() && matcher3.find())
-                {
-                    message = "{\"image\":[{\"id\":\"" + matcher1.group(1) + "\",\"x\":" + matcher2.group(1) + ",\"y\":" + matcher3.group(1) + "}]}";
+            if (premessage.substring(0,3).equals("RPi") && (premessage.length() <= 100)){
+//                showLog("Entered matcher");
+//                Pattern pattern1 = Pattern.compile(":(.*?),");
+//                Matcher matcher1 = pattern1.matcher(premessage);
+//                Pattern pattern2 = Pattern.compile("\\S,(.*?),\\S");
+//                Matcher matcher2 = pattern2.matcher(premessage);
+//                Pattern pattern3 = Pattern.compile(",\\S,(.*?)$");
+//                Matcher matcher3 = pattern3.matcher(premessage);
+//                if (matcher1.find() && matcher2.find() && matcher3.find())
+//                {
+//                    showLog(matcher1.group(1));
+//                    showLog(matcher2.group(1));
+//                    showLog(matcher3.group(1));
+////                    int xcoordint = Integer.parseInt(matcher2.group(1)) + 1;
+////                    int ycoordint = Integer.parseInt(matcher3.group(1)) + 1;
+////                    if (xcoordint > 14){
+////                        xcoordint = 14;
+////                    } else if (xcoordint < 2){
+////                        xcoordint = 2;
+////                    }
+////
+////                    if (ycoordint > 19){
+////                        ycoordint = 19;
+////                    } else if (ycoordint < 2){
+////                        ycoordint = 2;
+////                    }
+////                    String xcoord = Integer.toString(xcoordint);
+////                    String ycoord = Integer.toString(ycoordint);
+//                    message = "{\"image\":[{\"id\":\"" + matcher1.group(1) + "\",\"x\":" + matcher2.group(1) + ",\"y\":" + matcher3.group(1) + "}]}";
+//
+//                    message = "{\"image\":[{\"id\":\"" + matcher1.group(1) + "\",\"x\":" + matcher2.group(1) + ",\"y\":" + matcher3.group(1) + "}]}";
+//                } else {
+//                    message = premessage;
+//                }
+                String[] myStrings = premessage.split(",");
+                String imageid = myStrings[0].substring(4);
+
+                if (imageString.equals("")){
+                    imageString += "(" + imageid + "," + myStrings[1] + "," + myStrings[2] + ")";
                 } else {
-                    message = premessage;
+                    imageString += ", (" + imageid + "," + myStrings[1] + "," + myStrings[2] + ")";
                 }
+
+                int xcoordint = Integer.parseInt(myStrings[1]) + 1;
+                int ycoordint = Integer.parseInt(myStrings[2]) + 1;
+                    if (xcoordint > 14){
+                        xcoordint = 14;
+                    } else if (xcoordint < 2){
+                        xcoordint = 2;
+                    }
+
+                    if (ycoordint > 19){
+                        ycoordint = 19;
+                    } else if (ycoordint < 2){
+                        ycoordint = 2;
+                    }
+                    String xcoord = Integer.toString(xcoordint);
+                    String ycoord = Integer.toString(ycoordint);
+
+                setImageString(imageString);
+                message = "{\"image\":[{\"id\":\"" + imageid + "\",\"x\":" + xcoord + ",\"y\":" + ycoord + "}]}";
+
+
             }
 
             else if (premessage.length() == 155){
@@ -1022,10 +1082,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         case "WEST":
                             autoFace = "left";
                             break;
+                        default:
+                            break;
                     }
 
                     int xcoordint = Integer.parseInt(matcher2.group(1)) + 1;
                     int ycoordint = Integer.parseInt(matcher3.group(1)) + 1;
+                    if (ycoordint > 14){
+                        ycoordint = 14;
+                    } else if (ycoordint < 2){
+                        ycoordint = 2;
+                    }
+
+                    if (xcoordint > 19){
+                        xcoordint = 19;
+                    } else if (xcoordint < 2){
+                        xcoordint = 2;
+                    }
                     String xcoord = Integer.toString(xcoordint);
                     String ycoord = Integer.toString(ycoordint);
 
@@ -1089,6 +1162,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         });
                 alertDialog.show();
 
+                robotStatusTextView.setText("Pending status...");
             }
 
             //else if (premessage.length() == 76){

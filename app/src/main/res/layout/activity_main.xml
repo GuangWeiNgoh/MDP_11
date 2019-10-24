@@ -74,10 +74,10 @@
     <ToggleButton
         android:id="@+id/exploreToggleBtn"
         android:layout_width="118dp"
-        android:layout_height="64dp"
+        android:layout_height="50dp"
         android:layout_marginTop="57dp"
-        android:layout_x="32dp"
-        android:layout_y="715dp"
+        android:layout_x="34dp"
+        android:layout_y="713dp"
         android:gravity="center_vertical"
         android:textAlignment="center"
         android:textOff="@string/explore_button"
@@ -86,8 +86,8 @@
 
     <ToggleButton
         android:id="@+id/fastestToggleBtn"
-        android:layout_width="117dp"
-        android:layout_height="62dp"
+        android:layout_width="118dp"
+        android:layout_height="50dp"
         android:layout_marginStart="49dp"
         android:layout_marginTop="9dp"
         android:layout_x="202dp"
@@ -113,8 +113,8 @@
         android:layout_width="120dp"
         android:layout_height="35dp"
         android:layout_marginTop="118dp"
-        android:layout_x="152dp"
-        android:layout_y="736dp"
+        android:layout_x="155dp"
+        android:layout_y="733dp"
         android:text="@string/default_time"
         android:textSize="10sp" />
 
@@ -529,37 +529,54 @@
         android:text="R45" />
 
     <TextView
-        android:id="@+id/P1String"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_x="69dp"
-        android:layout_y="801dp"
-        android:text="Awaiting P1 Hex String Value..."
-        android:textSize="10sp" />
-
-    <TextView
         android:id="@+id/P2String"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_x="69dp"
-        android:layout_y="837dp"
+        android:layout_width="308dp"
+        android:layout_height="30dp"
+        android:layout_x="68dp"
+        android:layout_y="811dp"
         android:text="Awaiting P2 Hex String Value..."
         android:textSize="10sp" />
 
     <TextView
-        android:id="@+id/P1Header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="34dp"
-        android:layout_y="801dp"
-        android:text="P1 :" />
+        android:id="@+id/P1String"
+        android:layout_width="295dp"
+        android:layout_height="29dp"
+        android:layout_x="68dp"
+        android:layout_y="776dp"
+        android:text="Awaiting P1 Hex String Value..."
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/P2Header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="34dp"
-        android:layout_y="837dp"
+        android:layout_y="812dp"
         android:text="P2 :" />
+
+    <TextView
+        android:id="@+id/P1Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="34dp"
+        android:layout_y="776dp"
+        android:text="P1 :" />
+
+    <TextView
+        android:id="@+id/ImageString"
+        android:layout_width="261dp"
+        android:layout_height="33dp"
+        android:layout_x="104dp"
+        android:layout_y="845dp"
+        android:text="Awaiting Recognised Images..."
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/ImageStringHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="34dp"
+        android:layout_y="843dp"
+        android:text="Images :" />
 
 </AbsoluteLayout>
