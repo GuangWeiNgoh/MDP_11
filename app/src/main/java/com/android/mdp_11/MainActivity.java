@@ -42,6 +42,7 @@ import org.json.JSONObject;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -862,42 +863,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     BroadcastReceiver messageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            boolean condition = false;
+//            String premessage = intent.getStringExtra("receivedMessage");
+//            String message;
             String premessage = intent.getStringExtra("receivedMessage");
             String message;
-            if (premessage.substring(0,3).equals("RPi") && (premessage.length() <= 100)){
-//                showLog("Entered matcher");
-//                Pattern pattern1 = Pattern.compile(":(.*?),");
-//                Matcher matcher1 = pattern1.matcher(premessage);
-//                Pattern pattern2 = Pattern.compile("\\S,(.*?),\\S");
-//                Matcher matcher2 = pattern2.matcher(premessage);
-//                Pattern pattern3 = Pattern.compile(",\\S,(.*?)$");
-//                Matcher matcher3 = pattern3.matcher(premessage);
-//                if (matcher1.find() && matcher2.find() && matcher3.find())
-//                {
-//                    showLog(matcher1.group(1));
-//                    showLog(matcher2.group(1));
-//                    showLog(matcher3.group(1));
-////                    int xcoordint = Integer.parseInt(matcher2.group(1)) + 1;
-////                    int ycoordint = Integer.parseInt(matcher3.group(1)) + 1;
-////                    if (xcoordint > 14){
-////                        xcoordint = 14;
-////                    } else if (xcoordint < 2){
-////                        xcoordint = 2;
-////                    }
-////
-////                    if (ycoordint > 19){
-////                        ycoordint = 19;
-////                    } else if (ycoordint < 2){
-////                        ycoordint = 2;
-////                    }
-////                    String xcoord = Integer.toString(xcoordint);
-////                    String ycoord = Integer.toString(ycoordint);
-//                    message = "{\"image\":[{\"id\":\"" + matcher1.group(1) + "\",\"x\":" + matcher2.group(1) + ",\"y\":" + matcher3.group(1) + "}]}";
-//
-//                    message = "{\"image\":[{\"id\":\"" + matcher1.group(1) + "\",\"x\":" + matcher2.group(1) + ",\"y\":" + matcher3.group(1) + "}]}";
-//                } else {
-//                    message = premessage;
-//                }
+            try {
+
+                if(premessage.equals(" ")){
+                    showLog("caught");
+                }
+                condition = (premessage.length() <= 100) && premessage.substring(0,3).equals("RPi");
+            } catch (Exception e) {
+
+            }
+
+            if (condition){
+                premessage = premessage.trim();
                 String[] myStrings = premessage.split(",");
                 String imageid = myStrings[0].substring(4);
 
@@ -909,17 +891,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                 int xcoordint = Integer.parseInt(myStrings[1]) + 1;
                 int ycoordint = Integer.parseInt(myStrings[2]) + 1;
-                    if (xcoordint > 14){
-                        xcoordint = 14;
-                    } else if (xcoordint < 2){
-                        xcoordint = 2;
-                    }
-
-                    if (ycoordint > 19){
-                        ycoordint = 19;
-                    } else if (ycoordint < 2){
-                        ycoordint = 2;
-                    }
+//                    if (xcoordint == 15){
+//                        xcoordint = 1;
+//                    } else if (xcoordint == 1){
+//                        xcoordint = 0;
+//                    }
+//
+//                    if (ycoordint == 20){
+//                        ycoordint = 19;
+//                    } else if (ycoordint == 1){
+//                        ycoordint = 0;
+//                    }
                     String xcoord = Integer.toString(xcoordint);
                     String ycoord = Integer.toString(ycoordint);
 
@@ -929,76 +911,76 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             }
 
-            else if (premessage.length() == 155){
-                String premessage1 = premessage.substring(0,76);
-                String premessage2 = premessage.substring(77,153);
-                String premessage3 = premessage.substring(154);
-
-                StringBuilder bin1 = new StringBuilder(new BigInteger(premessage1, 16).toString(2));
-                StringBuilder bin2 = new StringBuilder(new BigInteger(premessage2, 16).toString(2));
-                String bin2post;
-                int i;
-                ArrayList<Integer> notex = new ArrayList<>();
-
-                for (i=0; i<bin1.length(); i++){
-                    if(bin1.substring(i,i+1).equals("0")){
-                        notex.add(i);
-                    }
-                }
-
-                //showLog("" + notex);
-                showLog("Binary 1:" + bin1 +"\n");
-                showLog("Binary 2:" + bin2 +"\n");
-
-                for (i=0; i<notex.size(); i++){
-                    bin2.setCharAt(notex.get(i), 'x');
-                }
-
-                showLog("Binary 1 Post:" + bin1 +"\n");
-                showLog("Binary 2 Post:" + bin2 +"\n");
-
-                bin2post = bin2.toString();
-                bin2post = bin2post.replaceAll("x","");
-                showLog("Binary 2 Replaced:" + bin2post +"\n");
-                bin2post = bin2post.substring(2,bin2post.length()-2);
-                showLog("Binary 2 Replaced:" + bin2post +"\n");
-
-                while (bin2post.length() % 4 != 0) {
-                    bin2post = bin2post + "0";
-                }
-                int length = bin2post.length();
-                int hexlength = length / 4 + ((length % 4 == 0) ? 0 : 1);
-                showLog("Binary 2 Length:" + length +"\n");
-                showLog("Binary 2 Hex Length:" + hexlength +"\n");
-                BigInteger bin2BI = new BigInteger(bin2post, 2);
-                showLog("Binary 2 Big Int:" + bin2BI +"\n");
-                String bin2hex = bin2BI.toString(16);
-
-                while (bin2hex.length() < hexlength){
-                    bin2hex = "0" + bin2hex;
-                }
-                showLog("Binary 2 Hex:" + bin2hex +"\n");
-
-                setStrings(premessage1,bin2hex);
-
-                String autoDirection = "";
-                switch (premessage3) {
-                    case "1":
-                        autoDirection = "forward";
-                        break;
-                    case "d":
-                        autoDirection = "right";
-                        break;
-                    case "a":
-                        autoDirection = "left";
-                        break;
-                    case "c":
-                        return;
-                }
-
-                message = "{\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}],\"move\":[{\"direction\":\"" + autoDirection + "\"}]}";
-
-            }
+//            else if (premessage.length() == 155){
+//                String premessage1 = premessage.substring(0,76);
+//                String premessage2 = premessage.substring(77,153);
+//                String premessage3 = premessage.substring(154);
+//
+//                StringBuilder bin1 = new StringBuilder(new BigInteger(premessage1, 16).toString(2));
+//                StringBuilder bin2 = new StringBuilder(new BigInteger(premessage2, 16).toString(2));
+//                String bin2post;
+//                int i;
+//                ArrayList<Integer> notex = new ArrayList<>();
+//
+//                for (i=0; i<bin1.length(); i++){
+//                    if(bin1.substring(i,i+1).equals("0")){
+//                        notex.add(i);
+//                    }
+//                }
+//
+//                //showLog("" + notex);
+//                showLog("Binary 1:" + bin1 +"\n");
+//                showLog("Binary 2:" + bin2 +"\n");
+//
+//                for (i=0; i<notex.size(); i++){
+//                    bin2.setCharAt(notex.get(i), 'x');
+//                }
+//
+//                showLog("Binary 1 Post:" + bin1 +"\n");
+//                showLog("Binary 2 Post:" + bin2 +"\n");
+//
+//                bin2post = bin2.toString();
+//                bin2post = bin2post.replaceAll("x","");
+//                showLog("Binary 2 Replaced:" + bin2post +"\n");
+//                bin2post = bin2post.substring(2,bin2post.length()-2);
+//                showLog("Binary 2 Replaced:" + bin2post +"\n");
+//
+//                while (bin2post.length() % 4 != 0) {
+//                    bin2post = bin2post + "0";
+//                }
+//                int length = bin2post.length();
+//                int hexlength = length / 4 + ((length % 4 == 0) ? 0 : 1);
+//                showLog("Binary 2 Length:" + length +"\n");
+//                showLog("Binary 2 Hex Length:" + hexlength +"\n");
+//                BigInteger bin2BI = new BigInteger(bin2post, 2);
+//                showLog("Binary 2 Big Int:" + bin2BI +"\n");
+//                String bin2hex = bin2BI.toString(16);
+//
+//                while (bin2hex.length() < hexlength){
+//                    bin2hex = "0" + bin2hex;
+//                }
+//                showLog("Binary 2 Hex:" + bin2hex +"\n");
+//
+//                setStrings(premessage1,bin2hex);
+//
+//                String autoDirection = "";
+//                switch (premessage3) {
+//                    case "1":
+//                        autoDirection = "forward";
+//                        break;
+//                    case "d":
+//                        autoDirection = "right";
+//                        break;
+//                    case "a":
+//                        autoDirection = "left";
+//                        break;
+//                    case "c":
+//                        return;
+//                }
+//
+//                message = "{\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}],\"move\":[{\"direction\":\"" + autoDirection + "\"}]}";
+//
+//            }
 
             else if (premessage.length() > 156){
                 String premessage1 = premessage.substring(0,76);
@@ -1102,7 +1084,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     String xcoord = Integer.toString(xcoordint);
                     String ycoord = Integer.toString(ycoordint);
 
-                    showLog(autoFace);
+//                    if (ycoord.equals("2") && xcoord.equals("3")){
+//
+//                    }
+                    //showLog(autoFace);
                     //message = "{\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}],\"robot\":[{direction:\"" + autoFace + "\",\"x\":" + matcher2.group(1) + ",\"y\":" + matcher3.group(1) + "}]}";
                     message = "{\"robot\":[{direction:\"" + autoFace + "\",\"x\":" + ycoord + ",\"y\":" + xcoord + "}],\"map\":[{\"explored\":" + premessage1 + ",\"length\":304,\"obstacle\":" + premessage2 + "}]}";
                     showLog(message);
@@ -1111,7 +1096,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 }
             }
 
-            else if (premessage.substring(0,2).equals("P1") && (premessage.length() == 156)){
+            else if ((premessage.length() == 156) && premessage.substring(0,2).equals("P1")){
                 String p1 = premessage.substring(3,79);
                 String p2 = premessage.substring(80);
 
@@ -1165,11 +1150,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 robotStatusTextView.setText("Pending status...");
             }
 
-            //else if (premessage.length() == 76){
-            //    message = "{\"map\":[{\"explored\":" + premessage + "\",\"length\":0,\"obstacle\":\"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111111111111\"}]}";
-            //}
 
-
+//            else if (premessage.equals("mazeend")){
+//                Random rand = new Random();
+//                int min = 1;
+//                int max = 15;
+//
+//                int randomNum = rand.nextInt((max - min) + 1) + min;
+//                String randomNumber = Integer.toString(randomNum);
+//                setImageString("("+ randomNumber + ",3,4)");
+//                //message = premessage;
+//                message = "{\"image\":[{\"id\":"+randomNumber+",\"x\":4,\"y\":5}]}";
+//            }
 
             else {
                 message = premessage;
